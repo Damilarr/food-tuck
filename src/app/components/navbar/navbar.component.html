@@ -1,0 +1,32 @@
+<nav class="bg-dark flex justify-around py-3 items-center relative">
+    <h1 class="text-yelloww mb-0">Food<span class="text-white">tuck</span></h1>
+    <ul class="md:flex hidden text-white text-base justify-between space-x-5 items-center">
+        <li><a href="">Home</a></li>
+        <li><a routerLink="menu">Menu</a></li>
+        <li><a routerLink="blog">Blog</a></li>
+        <li><a href="">Pages</a></li>
+        <li><a routerLink="about">About</a></li>
+        <li><a routerLink="shop">Shop</a></li>
+        <li><a href="">Contact</a></li>
+    </ul>
+    <div class="flex justify-around items-center space-x-3 text-white">
+        <a href=""><i class="fa fa-search text-base"></i></a>
+        <a routerLink="login" ><i class="fa fa-user text-base"></i></a>
+        <mat-icon matBadge="0" matBadgeColor="primary">home</mat-icon>
+        <i class="fa fa-search text-base" matBadge="0" matBadgeColor="primary"></i>
+    </div>
+    <button class="bg-yelloww px-3 md:hidden focus: py-1 relative"><i class="fa fa-bars text-lg text-white" (click)="openNav()" id="navBtn"></i></button>
+    <div class="flex-col z-50 justify-center hidden w-screen animate-fadeInSlideRight top-0 duration-1000 h-screen fixed bg-dark" id="mobileNav" (click)="closeNav()">
+        <button class="bg-yelloww px-3 md:hidden py-1 w-fit fixed top-3 left-3"><i class="fa fa-times text-lg text-white"></i></button>
+        <ul class="flex flex-col space-y-5 justify-center items-center" id="ull">
+            <li><a href=""class="text-white text-lg">Home</a></li>
+            <li><a routerLink="menu" class="text-white text-lg" >Menu</a></li>
+            <li><a routerLink="blog" class="text-white text-lg" >Blog</a></li>
+            <li><a href="" class="text-white text-lg" >Chefs</a></li>
+            <li><a routerLink="about" class="text-white text-lg" >About</a></li>
+            <li><a routerLink="shop" class="text-white text-lg" >Shop</a></li>
+            <li><a href="" class="text-white text-lg">Contact</a></li>
+        </ul>
+    </div>
+    
+</nav>
