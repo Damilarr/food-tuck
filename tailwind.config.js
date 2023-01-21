@@ -14,6 +14,5 @@ module.exports = {
       homeSect:"url('assets/imgs/banner2.png')",
       banner:"url('assets/imgs/banner.png')"
     }
-  },
-  plugins: [],
+  }
 }

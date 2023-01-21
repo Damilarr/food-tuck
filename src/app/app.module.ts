@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CountComponent } from './components/count/count.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { LoginComponent } from './components/login/login.component';
     CountComponent,
     MenuComponent,
     LoginComponent,
+    ProfileComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { LoginComponent } from './components/login/login.component';
     MatIconModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

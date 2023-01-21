@@ -1,0 +1,26 @@
+.body{background-color:white !important;}
+  
+.tab {
+  opacity:0;
+  visibility:hidden;
+  transform:translate(0,50px);
+}
+
+.active-tab,.active-button{
+  transition:transform 0.2s,background 0.2s,color 0.2s,;
+  -webkit-transition:transform 0.2s,background 0.2s,color 0.2s,;
+  -moz-transition:transform 0.2s,background 0.2s,color 0.2s,;
+  -ms-transition:transform 0.2s,background 0.2s,color 0.2s,;
+  -o-transition:transform 0.2s,background 0.2s,color 0.2s,;
+}
+
+.active-tab{
+  visibility:visible;
+  opacity:1;
+  transform:translate(0,0);
+  z-index:99;
+}
+.active-button{
+  background:rgb(255, 159,13) !important;
+  color:black;
+}
