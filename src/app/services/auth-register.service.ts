@@ -12,10 +12,15 @@ export class AuthRegisterService {
     let url = 'http://localhost:3007/register/new'
     return this.http.post<any>(url,user);
   }
+  signIn(user:any): Observable<any>{
+    let url =  'http://localhost:3007/login'
+    return this.http.post<any>(url,user)
+  }
   setUser(user:any){
-    this.user = user
+  sessionStorage.setItem('user',  JSON.stringify(user))
   }
   getUser(){
-    return this.user;
+    let user:any = sessionStorage.getItem('user');
+    return JSON.parse(user)
   }
 }

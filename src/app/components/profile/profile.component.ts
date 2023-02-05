@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
@@ -9,7 +10,8 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class ProfileComponent implements OnInit { 
   currentUser:any = '' 
-  constructor(private user:AuthRegisterService){}
+  toastText:any = ''
+  constructor(private user:AuthRegisterService,private router:Router){}
   clicked(event:any){
     let val = event.target.getAttribute('tab');
     if (val !== null) {
@@ -22,6 +24,20 @@ export class ProfileComponent implements OnInit {
       tabs[val - 1].classList.add('active-tab');
       btns[val - 1].classList.add('active-button');
     }
+  }
+  showToast() {
+    document?.getElementById("myToast")?.classList.remove("hidden");
+    setTimeout(function () {
+        document?.getElementById("myToast")?.classList.add("hidden");
+    }, 5000);
+  }
+  logout(){
+    sessionStorage.clear()
+    this.toastText = 'logout successful'
+    document?.getElementById('toastBtn')?.click()
+    setTimeout(() => {
+      this.router.navigate(['/'])
+    }, 3000);
   }
   ngOnInit(): void {
     document.querySelectorAll('#tabz .btn')?.forEach((element:any) => {

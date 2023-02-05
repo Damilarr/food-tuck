@@ -45,8 +45,8 @@ export class SignUpComponent implements OnInit {
     if (response.status == 'success') {
       this.toastText = response.message
       document?.getElementById('toastBtn')?.click()
-      this.regservice.setUser(response.details)
-      this.signInAuth.signIn()
+      this.regservice.setUser(response.details);
+      sessionStorage.setItem('TOKEN',response.token);
       setTimeout(() => {
         this.router.navigate(['/profile'])
       }, 4000);
