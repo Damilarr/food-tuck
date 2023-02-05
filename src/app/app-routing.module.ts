@@ -5,7 +5,10 @@ import { BlogComponent } from './components/blog/blog.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ProfileGuard } from './Guards/profile.guard';
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +17,9 @@ const routes: Routes = [
     {path:'about', component:AboutComponent},
     {path:'shop',component:ShopComponent},
     {path:'menu',component:MenuComponent},
-    {path:'login',component:LoginComponent}
+    {path:'login',component:LoginComponent},
+    {path:'profile',component:ProfileComponent,canActivate:[ProfileGuard]},
+    {path:'sign-up',component:SignUpComponent}
 ];
 
 @NgModule({

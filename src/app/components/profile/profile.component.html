@@ -1,0 +1,46 @@
+<section class="bg-banner bg-cover bg-bottom h-52 justify-center py-4 flex flex-col items-center">
+  <p class="text-white text-5xl font-bold">My Account</p>
+  <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">profile</span></p>
+</section> 
+ <div class="bg-white">
+  <div class="tabs mx-auto text-yelloww m-10 w-11/12   sm:w-10/12 relative">
+    <div class="top flex justify-between text-yelloww bg-black rounded-t-md overflow-hidden">
+      <div class="buttons justify-between w-full my-auto flex" id="tabz">
+        <span tab="1" class="btn bg-white cursor-pointer p-2 px-6">Profile</span>
+        <span tab="2" class="btn bg-white cursor-pointer p-2 px-6">Orders</span>
+        <button tab="3" class="bg-white cursor-pointer p-2 px-6">Logout</button>
+      </div>
+    </div>
+    <div class="center text-gray-800 relative">
+  <!-- tab start -->
+     <div class="tab bg-white shadow-2xl rounded-b-md w-full  border-t-0">
+        <p class="text-xl p-3 px-5 font-semibold">My Profile</p>
+        <img class="p-5 w-96" src="https://images.pexels.com/photos/635705/pexels-photo-635705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+        <div class="p-3 px-5">
+          <div class="form-group">
+            <label for="name" class="font-bold">Name:</label>
+            <input type="text" id="last_name" value="{{currentUser.name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" readonly required>
+          </div>
+          <div class="form-group">
+            <label for="name" class="font-bold">Email:</label>
+            <input type="text" value="{{currentUser.email}}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" readonly required>
+          </div>
+          <div class="form-group">
+            <label for="name" class="font-bold">Phone Number:</label>
+            <input type="text" id="phone" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" readonly required>
+          </div>
+          <br>
+          <div tab="2" class="oint text-sm my-4 p-2 px-4 cursor-pointer font-semibold inline-block bg-yelloww rounded-sm text-black">Edit Profile</div>
+        </div>     
+     </div>
+  <!-- tab endd-->
+     <div class="tab bg-white shadow-2xl rounded-b-md w-full  border-t-0 absolute top-0">
+        <p class="text-xl p-3 px-5 font-semibold">Wellcome To Tab 5</p>
+        <img class="p-5 w-96" src="https://images.pexels.com/photos/635705/pexels-photo-635705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+        <div class="p-3 px-5">
+          <div class="long-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita rem dolore ut numquam fugiat, accusantium consequatur ratione nesciunt magnam quibusdam necessitatibus dolorum velit. Quia illo autem adipisci cupiditate. Repellendus!</div>
+        </div>     
+     </div>
+    </div>
+  </div>
+ </div>
