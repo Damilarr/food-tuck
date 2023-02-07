@@ -9,7 +9,10 @@ export class AuthServiceService {
    private isSignedIn = false;
 
   signIn() {
+   const signedIn = sessionStorage.getItem('TOKEN')
+   if (signedIn) {
     this.isSignedIn = true;
+   } 
   }
 
   signOut() {

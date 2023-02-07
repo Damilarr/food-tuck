@@ -6,13 +6,14 @@
     <div class="container mx-auto px-6 py-12 h-full">
       <div class="bg-white flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
         <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
-          <form>
+          <form novalidate (ngSubmit)="login()" class="form-body" [formGroup]="loginData">
             <!-- Email input -->
             <div class="mb-6">
               <input
                 type="text"
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
                 placeholder="Email"
+                formControlName="email"
               />
             </div>
   
@@ -22,6 +23,7 @@
                 type="password"
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
                 placeholder="Password"
+                formControlName="password"
               />
             </div>
   
@@ -50,6 +52,7 @@
               class="inline-block px-7 py-3 bg-yelloww text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yelloww focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yelloww active:shadow-lg transition duration-150 ease-in-out w-full"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
+              [disabled]="loginData.invalid || submitted"
             >
               Sign in
             </button>
@@ -104,6 +107,14 @@
         </div>
       </div>
     </div>
-  </section>
-  <!-- <router-outlet></router-outlet> -->
-  
+    <div class="mt-10 space-x-5 hidden">
+      <button (click)="showToast()" id="toastBtn" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white">Show Toast</button>
+  </div>
+</section>
+<!-- Implement the toast -->
+<div id="myToast" class="hidden fixed right-0 left-0 bottom-10 z-50 px-5 py-4 border-r-8 border-blue-500 bg-[#13945e] drop-shadow-lg">
+  <p class="text-sm">
+      <span class="mr-2 inline-block px-3 py-1 rounded-full bg-blue-500 text-white font-extrabold">i</span>
+      {{toastText}}
+  </p>
+</div>  

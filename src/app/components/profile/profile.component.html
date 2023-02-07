@@ -8,7 +8,7 @@
       <div class="buttons justify-between w-full my-auto flex" id="tabz">
         <span tab="1" class="btn bg-white cursor-pointer p-2 px-6">Profile</span>
         <span tab="2" class="btn bg-white cursor-pointer p-2 px-6">Orders</span>
-        <button tab="3" class="bg-white cursor-pointer p-2 px-6">Logout</button>
+        <button tab="3" class="bg-white cursor-pointer p-2 px-6" (click)="logout()">Logout</button>
       </div>
     </div>
     <div class="center text-gray-800 relative">
@@ -44,3 +44,13 @@
     </div>
   </div>
  </div>
+ <div class="mt-10 space-x-5 hidden">
+  <button (click)="showToast()" id="toastBtn" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white">Show Toast</button>
+</div>
+<!-- Implement the toast -->
+<div id="myToast" class="hidden fixed right-0 left-0 bottom-10 z-50 px-5 py-4 border-r-8 border-blue-500 bg-[#13945e] drop-shadow-lg">
+<p class="text-sm">
+  <span class="mr-2 inline-block px-3 py-1 rounded-full bg-blue-500 text-white font-extrabold">i</span>
+  {{toastText}}
+</p>
+</div>
