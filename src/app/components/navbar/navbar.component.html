@@ -1,90 +1,34 @@
 <nav class="bg-dark flex justify-around py-3 items-center relative">
-  <h1 class="text-yelloww mb-0">Food<span class="text-white">tuck</span></h1>
-  <ul
-    class="md:flex hidden text-white text-base justify-between space-x-5 items-center"
-  >
-    <li>
-    <a
-    routerLink="/"
-    routerLinkActive="active"
-    class="cursor-pointer tracking-normal">
-
-
-      Home
-    </a>
-    </li>
-    <li
-      routerLink="menu"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      Menu
-    </li>
-    <li
-      routerLink="blog"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      Blog
-    </li>
-    <li
-      routerLink="page"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      Pages
-    </li>
-    <li
-      routerLink="about"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      About
-    </li>
-    <li
-      routerLink="shop"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      Shop
-    </li>
-    <li
-      routerLink="contact"
-      routerLinkActive="active"
-      class="cursor-pointer tracking-normal"
-    >
-      Contact
-    </li>
-  </ul>
-  <div class="flex justify-around items-center space-x-3 text-white">
-    <a href=""><i class="fa fa-search text-base"></i></a>
-    <a routerLink="login"><i class="fa fa-user text-base"></i></a>
-    <mat-icon matBadge="0" matBadgeColor="primary">home</mat-icon>
-    <i class="fa fa-search text-base" matBadge="0" matBadgeColor="primary"></i>
-  </div>
-  <button class="bg-yelloww px-3 md:hidden focus: py-1 relative">
-    <i
-      class="fa fa-bars text-lg text-white"
-      (click)="openNav()"
-      id="navBtn"
-    ></i>
-  </button>
-  <div
-    class="flex-col z-50 justify-center hidden w-screen animate-fadeInSlideRight top-0 duration-1000 h-screen fixed bg-dark"
-    id="mobileNav"
-    (click)="closeNav()"
-  >
-    <button class="bg-yelloww px-3 md:hidden py-1 w-fit fixed top-3 left-3">
-      <i class="fa fa-times text-lg text-white"></i>
-    </button>
-    <ul class="flex flex-col space-y-5 justify-center items-center" id="ull">
-      <li><a href="" class="text-white text-lg">Home</a></li>
-      <li><a routerLink="menu" class="text-white text-lg">Menu</a></li>
-      <li><a routerLink="blog" class="text-white text-lg">Blog</a></li>
-      <li><a href="" class="text-white text-lg">Chefs</a></li>
-      <li><a routerLink="about" class="text-white text-lg">About</a></li>
-      <li><a routerLink="shop" class="text-white text-lg">Shop</a></li>
-      <li><a href="" class="text-white text-lg">Contact</a></li>
+    <h1 class="text-yelloww mb-0">Food<span class="text-white">tuck</span></h1>
+    <ul class="md:flex hidden text-white text-base justify-between space-x-5 items-center">
+        <li routerLink="/" class="cursor-pointer"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Home</li>
+        <li routerLink="menu" class="cursor-pointer" routerLinkActive="active" >Menu</li>
+        <li routerLink="blog" class="cursor-pointer" routerLinkActive="active">Blog</li>
+        <li routerLink="page" class="cursor-pointer" routerLinkActive="active">Pages</li>
+        <li routerLink="about" class="cursor-pointer" routerLinkActive="active">About</li>
+        <li routerLink="shop" class="cursor-pointer" routerLinkActive="active">Shop</li>
+        <li routerLink="contact" class="cursor-pointer" routerLinkActive="active"><a >Contact</a></li>
     </ul>
-  </div>
+    <div class="flex justify-around items-center space-x-3 text-white">
+        <a href=""><i class="fa fa-search text-base"></i></a>
+        <a routerLink="profile" ><i class="fa fa-user text-base"></i></a>
+        <mat-icon matBadge="0" matBadgeColor="primary">home</mat-icon>
+        <i class="fa fa-search text-base" matBadge="0" matBadgeColor="primary"></i>
+    </div>
+    <button class="bg-yelloww px-3 md:hidden focus: py-1 relative"><i class="fa fa-bars text-lg text-white" (click)="openNav()" id="navBtn"></i></button>
+    <div class="flex-col z-50 justify-center hidden w-screen animate-fadeInSlideRight top-0 duration-1000 h-screen fixed bg-dark" id="mobileNav" (click)="closeNav()">
+        <button class="bg-yelloww px-3 md:hidden py-1 w-fit fixed top-3 left-3"><i class="fa fa-times text-lg text-white"></i></button>
+        <ul class="flex flex-col space-y-5 justify-center items-center" id="ull">
+            <li routerLink='/' class="text-white text-lg">Home</li>
+            <li routerLink="menu" class="text-white text-lg" >Menu</li>
+            <li routerLink="blog" class="text-white text-lg" >Blog</li>
+            <li routerLink="page" class="text-white text-lg" >Chefs</li>
+            <li routerLink="about" class="text-white text-lg" >About</li>
+            <li routerLink="shop" class="text-white text-lg" >Shop</li>
+            <li routerLink='contact' class="text-white text-lg">Contact</li>
+        </ul>
+    </div>
+
 </nav>
