@@ -3,7 +3,7 @@
   -webkit-animation: fadeInSlideRight 1s ease-out;
 }
 .active {
-  color: #FF9F0D;
+  color: #ff9f0d;
 }
 
 @keyframes fadeInSlideRight {
