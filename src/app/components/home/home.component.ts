@@ -24,11 +24,11 @@ export class HomeComponent implements OnInit {
         this.iterateNo(Number(chefNo),'cheff')
         this.iterateNo(Number(customersNo),'customers')
         this.iterateNo(Number(itemsNo),'items')
-       
+
       }
     }
   };
-  
+
   iterateNo(max: number,inner:string){
     let elem = document.getElementById(`${inner}`)
     if (elem) {
@@ -38,12 +38,11 @@ export class HomeComponent implements OnInit {
         this.min++
         setTimeout(() => {
           this.iterateNo(max,inner)
-        }, 20); 
+        }, 20);
     }
   }
 
-  constructor() { 
-    
+  constructor() {
   }
   ngOnInit(): void {
     Aos.init();
