@@ -6,6 +6,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { PagesComponent } from './components/pages/pages.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'profile',component:ProfileComponent,canActivate:[ProfileGuard]},
     {path:'sign-up',component:SignUpComponent},
-    {path:'contact',component:ContactComponent}
+    {path:'contact',component:ContactComponent},
+    {path:'page',component:PagesComponent},
 ];
 
 @NgModule({
