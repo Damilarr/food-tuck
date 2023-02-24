@@ -14,7 +14,8 @@ export class SignUpComponent implements OnInit {
   formData:any;
   submitted=false;
   toastText:any = ''
-  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) { 
+  showPassword:any= 'password'
+  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) {
     this.formData= this.fb.group({
       name:["",[Validators.required, Validators.minLength(3),Validators.maxLength(30)]],
       email:["", [Validators.required, Validators.email]],
@@ -29,7 +30,7 @@ export class SignUpComponent implements OnInit {
   }
   get name() {
     return this.formData.get("name");
-  }  
+  }
   get password() {
     return this.formData.get("password");
   }
@@ -50,7 +51,7 @@ export class SignUpComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/profile'])
       }, 4000);
-      
+
     }
     }, (error)=>{
       alert(error.message)
@@ -61,4 +62,9 @@ export class SignUpComponent implements OnInit {
     window?.scrollTo(0,0)
   }
 
+ show() {
+    this.showPassword == 'password'
+      ? (this.showPassword = 'text')
+      : (this.showPassword = 'password');
+  }
 }
