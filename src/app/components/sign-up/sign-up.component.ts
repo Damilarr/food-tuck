@@ -14,8 +14,7 @@ export class SignUpComponent implements OnInit {
   formData:any;
   submitted=false;
   toastText:any = ''
-  showPassword:any= 'password'
-  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) {
+  showPassword='password'
   constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) {
     this.formData= this.fb.group({
       name:["",[Validators.required, Validators.minLength(3),Validators.maxLength(30)]],
