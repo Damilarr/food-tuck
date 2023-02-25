@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
     this.formData= this.fb.group({
       name:["",[Validators.required, Validators.minLength(3),Validators.maxLength(30)]],
       email:["", [Validators.required, Validators.email]],
+      userName:["", [Validators.required]],
       password:["", [Validators.required,Validators.pattern('[a-zA-Z0-9]{8,30}$')]],
     })
   }
@@ -30,6 +31,9 @@ export class SignUpComponent implements OnInit {
   }
   get name() {
     return this.formData.get("name");
+  }
+  get userName() {
+    return this.formData.get("userName");
   }
   get password() {
     return this.formData.get("password");

@@ -12,7 +12,8 @@ export class LoginComponent implements OnInit {
   loginData:any;
   submitted=false;
   toastText:any = ''
-  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService) { 
+  showPassword='password'
+  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService) {
     this.loginData= this.fb.group({
       email:["", [Validators.required, Validators.email]],
       password:["", [Validators.required]],
@@ -54,6 +55,12 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     window?.scrollTo(0,0)
+  }
+
+  show() {
+    this.showPassword == 'password'
+      ? (this.showPassword = 'text')
+      : (this.showPassword = 'password');
   }
 
 }
