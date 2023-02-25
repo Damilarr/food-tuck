@@ -15,7 +15,8 @@
   <!-- tab start -->
      <div class="tab bg-white shadow-2xl rounded-b-md w-full  border-t-0">
         <p class="text-xl p-3 px-5 font-semibold">My Profile</p>
-        <img class="p-5 w-96" src="https://images.pexels.com/photos/635705/pexels-photo-635705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+        <img class="p-5 object-cover" *ngIf="picture" src="{{picture}}" alt="">
+        <img *ngIf="!picture" class="p-5 object-cover w-96" src="../../../assets/imgs/avatar-img.png" alt="">
         <div class="p-3 px-5">
           <div class="form-group">
             <label for="name" class="font-bold">Name:</label>
@@ -35,8 +36,9 @@
      </div>
   <!-- tab endd-->
      <div class="tab bg-white shadow-2xl rounded-b-md w-full  border-t-0 absolute top-0">
-        <p class="text-xl p-3 px-5 font-semibold">Wellcome To Tab 5</p>
-        <img class="p-5 w-96" src="https://images.pexels.com/photos/635705/pexels-photo-635705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+        <p class="text-xl p-3 px-5 font-semibold">My Orders</p>
+        <img class="p-5 w-max object-cover" *ngIf="picture" src="{{picture}}" alt="">
+        <img *ngIf="!picture" class="p-5 w-max" src="../../../assets/imgs/avatar-img.png" alt="">
         <div class="p-3 px-5">
           <div class="long-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita rem dolore ut numquam fugiat, accusantium consequatur ratione nesciunt magnam quibusdam necessitatibus dolorum velit. Quia illo autem adipisci cupiditate. Repellendus!</div>
         </div>     

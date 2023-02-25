@@ -3,21 +3,27 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SocialAuthService, SocialLoginModule, SocialUser } from '@abacritt/angularx-social-login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[SocialLoginModule]
 })
 export class LoginComponent implements OnInit {
+  user:any;
+  loggedIn: any;
   loginData:any;
   submitted=false;
   toastText:any = ''
-  showPassword='password'
-  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService) {
+  constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private authService: SocialAuthService) { 
     this.loginData= this.fb.group({
       email:["", [Validators.required, Validators.email]],
       password:["", [Validators.required]],
     })
+  }
+  clickBtn(){
+    document?.getElementById('sgn-btn')?.click()
   }
   showToast() {
     document?.getElementById("myToast")?.classList.remove("hidden");
@@ -37,13 +43,7 @@ export class LoginComponent implements OnInit {
     this.submitted=false;
     console.log(response);
     if (response.auth) {
-      this.toastText = response.message
-      document?.getElementById('toastBtn')?.click()
-      this.regservice.setUser(response.user)
-      sessionStorage.setItem('TOKEN',response.token);
-      setTimeout(() => {
-        this.router.navigate(['/profile'])
-      }, 4000);
+      this.validateResponse(response)
     }
     },(error: HttpErrorResponse) => {
         console.log(error.error.message)
@@ -53,8 +53,31 @@ export class LoginComponent implements OnInit {
         this.submitted = false
     })
   }
-  ngOnInit(): void {
-    window?.scrollTo(0,0)
+  validateResponse(resp:any){
+    this.toastText = resp.message
+    document?.getElementById('toastBtn')?.click()
+    this.regservice.setUser(resp.user)
+    sessionStorage.setItem('TOKEN',resp.token);
+    setTimeout(() => {
+      this.router.navigate(['/profile'])
+    }, 4000);
+  }
+  ngOnInit():void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      this.regservice.signWithGoogle(user).subscribe((response)=>{
+        console.log(response);
+        if (response.auth) {
+          this.validateResponse(response)
+        }
+        },(error: HttpErrorResponse) => {
+            console.log(error.error.message)
+            this.toastText = error.error.message
+            document?.getElementById('toastBtn')?.click()
+        })
+    });
+    window?.scrollTo(0,0);
   }
 
   show() {

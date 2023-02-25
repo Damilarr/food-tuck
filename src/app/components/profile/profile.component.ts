@@ -11,6 +11,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 export class ProfileComponent implements OnInit { 
   currentUser:any = '' 
   toastText:any = ''
+  picture:any
   constructor(private user:AuthRegisterService,private router:Router){}
   clicked(event:any){
     let val = event.target.getAttribute('tab');
@@ -46,5 +47,8 @@ export class ProfileComponent implements OnInit {
     let one:HTMLElement = document.querySelector('#tabz span') as HTMLElement;
     one.click()
     this.currentUser = this.user.getUser()
+    if (this.currentUser.picture != null) {
+      this.picture = this.currentUser.picture;
+    }
   }
 }
