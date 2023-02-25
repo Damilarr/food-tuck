@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginData:any;
   submitted=false;
   toastText:any = ''
+  showPassword: any;
   constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private authService: SocialAuthService) { 
     this.loginData= this.fb.group({
       email:["", [Validators.required, Validators.email]],
@@ -81,9 +82,10 @@ export class LoginComponent implements OnInit {
   }
 
   show() {
-    this.showPassword == 'password'
-      ? (this.showPassword = 'text')
-      : (this.showPassword = 'password');
+    this.showPassword = document?.getElementById('passwordInp')
+    this.showPassword.type == 'password'
+      ? (this.showPassword.type = 'text')
+      : (this.showPassword.type = 'password');
   }
 
 }
