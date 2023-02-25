@@ -13,8 +13,12 @@ export class AuthRegisterService {
     return this.http.post<any>(url,user);
   }
   signIn(user:any): Observable<any>{
-    let url =  'http://localhost:3007/login'
+    let url =  'http://localhost:3007/register/login'
     return this.http.post<any>(url,user)
+  }
+  signWithGoogle(idToken:any): Observable<any>{
+    let url = 'http://localhost:3007/google-auth'
+    return this.http.post<any>(url,idToken)
   }
   setUser(user:any){
   sessionStorage.setItem('user',  JSON.stringify(user))
