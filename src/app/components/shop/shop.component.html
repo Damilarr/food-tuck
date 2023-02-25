@@ -1,7 +1,7 @@
 <section class="bg-banner bg-cover bg-bottom h-52 mb-5 justify-center py-4 flex flex-col items-center">
   <p class="text-white text-5xl font-bold">Our Shop</p>
   <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">Shop</span></p>
-</section> 
+</section>
  <div class="bg-white flex-col-reverse lg:flex-row flex lg:items-start space-x-0 lg:space-x-3 items-center lg:justify-around p-4">
     <div class="flex flex-col w-11/12 sm:w-10/12 lg:w-9/12 justify-around items-center relative mx-auto shadow-md p-3">
         <div class="form-control px-2 font-bold shadow-2xl shadow-yelloww bg-white rounded-sm absolute left-3 z-20 m-3 top-0" >
@@ -27,17 +27,18 @@
         </div>
         <div class="container w-full" >
             <div class="flex flex-wrap sm:-mx-4 mx-4">
-              <div class="w-full mx-auto sm:mx-auto md:mx-0 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4" (click)="getFoodProduct(product.id)" *ngFor="let product of PRODUCTS | paginate: {itemsPerPage: tableSize,currentPage:page,
+              <div class="p-5 w-full mx-auto sm:mx-auto md:mx-0 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4" (click)="getFoodProduct(product.id)" *ngFor="let product of PRODUCTS | paginate: {itemsPerPage: tableSize,currentPage:page,
                   totalItems: count};let i = index">
-                <span  class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                <span  class="  c-card block bg-white shadow rounded-lg overflow-hidden">
                 <div class="relative pb-48 overflow-hidden">
-                  <img class="absolute inset-0 h-full w-full object-cover" src="{{product.img}}" alt="{{product.id}}">
+                  <img class="absolute inset-0 h-full w-full object-cover shadow-md hover:shadow-xl" src="{{product.img}}" alt="{{product.id}}">
                 </div>
                 <div class="pt-4 px-4 border-b border-gray-300">
                   <p class="font-bold mb-0 text-lg">{{product.name}}</p>
                   <!-- <p class="text-sm">{{product.dsc}}</p> -->
-                  <div class="flex text-yelloww items-center">
-                    <span class="text-xl">{{product.price | currency}}</span>
+                  <div class="flex  items-center justify-around pb-3">
+                    <span class="text-xl text-yelloww">{{product.price | currency}}</span>
+                    <button class=" text-center bg-yelloww btn btn-yelloww text-white  py-2 px-2 rounded hover:bg-yellow-600 " (click)="cart()"> Add to cart</button>
                   </div>
                 </div>
                 <!-- <div class="p-4 flex items-center text-sm text-gray-600">
@@ -83,15 +84,15 @@
         <div>
             <input type="checkbox" class="mx-2">
             <label for="Drink">Drink</label>
-        </div>       
+        </div>
         <div>
             <input type="checkbox" class="mx-2">
             <label for="Dessert">Dessert</label>
-        </div>       
+        </div>
         <div>
             <input type="checkbox" class="mx-2">
             <label for="Pork">Pork</label>
-        </div>              
+        </div>
     </div>
 </div>
      <!-- <div class="container mx-auto" >
@@ -116,7 +117,7 @@
               <i class="text-yelloww fa fa-star"></i>
               <i class="text-yelloww fa-regular fa-star"></i>
              <span class="ml-2">{{product.rate}} star Rating</span>
-              </div> 
+              </div>
           </span>
           </div>
         </div>

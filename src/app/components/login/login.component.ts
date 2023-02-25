@@ -80,4 +80,10 @@ export class LoginComponent implements OnInit {
     window?.scrollTo(0,0);
   }
 
+  show() {
+    this.showPassword == 'password'
+      ? (this.showPassword = 'text')
+      : (this.showPassword = 'password');
+  }
+
 }

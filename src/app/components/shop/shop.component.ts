@@ -33,7 +33,7 @@ export class ShopComponent implements OnInit {
         console.log(error);
       }
     );
-  } 
+  }
   onDataChange(event: any) {
     this.page = event;
     this.fetchFoods();
@@ -45,5 +45,8 @@ export class ShopComponent implements OnInit {
   }
   getFoodProduct(id:string){
    let ppt =  this.PRODUCTS.find((product: any)=>{return product.id == id })
+  }
+  cart(){
+    alert('wow moving')
   }
 }
