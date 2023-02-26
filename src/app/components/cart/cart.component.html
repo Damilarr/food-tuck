@@ -1,6 +1,9 @@
-
-<div class="bg-gray-100">
-    <div class="container mx-auto mt-10">
+<section class="bg-banner bg-cover bg-bottom h-52 justify-center py-4 flex flex-col items-center">
+    <p class="text-white text-5xl font-bold">Shopping Cart</p>
+    <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">Shopping cart</span></p>
+</section>
+<section class="bg-gray-100">
+    <div class="container mx-auto">
       <div class="flex shadow-md my-10">
         <div class="w-3/4 bg-white px-10 py-10">
           <div class="flex justify-between border-b pb-8">
@@ -45,10 +48,10 @@
           </a>
         </div>
   
-        <div id="summary" class="w-1/4 px-8 py-10">
+        <div id="summary" class="w-1/4 px-8 py-10" *ngFor="let item of PRODUCTS">
           <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
           <div class="flex justify-between mt-10 mb-5">
-            <span class="font-semibold text-sm uppercase">Items 3</span>
+            <span class="font-semibold text-sm uppercase">Items {{PRODUCTS.length}}</span>
             <span class="font-semibold text-sm">590$</span>
           </div>
           <div>
@@ -73,4 +76,4 @@
   
       </div>
     </div>
-</div>  
+</section>  
