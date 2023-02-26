@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  cartQuantity:any = 0
+  constructor(private cartService:CartService
+    ) { }
   openNav(){
     document.getElementById('mobileNav')?.classList.replace('hidden','flex');
     document.getElementById('ull')?.scrollBy()
@@ -17,6 +19,9 @@ export class NavbarComponent implements OnInit {
     document.getElementById('mobileNav')?.classList.replace('flex','hidden');
   }
   ngOnInit(): void {
+    this.cartService.myValue$.subscribe((quantity:any)=>{
+      this.cartQuantity = quantity
+    })
   }
 
 }
