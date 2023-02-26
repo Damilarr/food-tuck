@@ -16,6 +16,8 @@ export class ShopComponent implements OnInit {
   foodType:string = 'best-foods'
   constructor(private foodService: FoodsService,private cartService:CartService) {}
   ngOnInit(): void {
+
+
     this.fetchFoods();
     document.getElementById('sort')?.addEventListener('change',this.setFoodType)
   }
@@ -27,8 +29,14 @@ export class ShopComponent implements OnInit {
   fetchFoods(): void {
     this.foodService.getFoods(this.foodType).subscribe(
       (response) => {
-        this.PRODUCTS = response;
-        console.log(response);
+
+        response.forEach(function (element:any) {
+          element.quantity=1
+          element.total= element.price
+
+        });
+          this.PRODUCTS = response;
+          console.log(this.PRODUCTS);
       },
       (error) => {
         console.log(error);
@@ -49,5 +57,5 @@ export class ShopComponent implements OnInit {
    this.cartService.addToCart(prod)
    alert( `successfully added ${prod.name} to cart`)
   }
-  
+
 }
