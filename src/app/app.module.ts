@@ -25,6 +25,7 @@ import { PagesComponent } from './components/pages/pages.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
 import { SocialAuthService } from 'angularx-social-login/socialauth.service';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SocialAuthService } from 'angularx-social-login/socialauth.service';
     SignUpComponent,
     ContactComponent,
     PagesComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
