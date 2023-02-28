@@ -26,6 +26,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
 import { SocialAuthService } from 'angularx-social-login/socialauth.service';
 import { CartComponent } from './components/cart/cart.component';
+import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CartComponent } from './components/cart/cart.component';
     ContactComponent,
     PagesComponent,
     CartComponent,
+    PaymentStatusComponent,
   ],
   imports: [
     BrowserModule,
