@@ -48,9 +48,10 @@ export class CartComponent implements OnInit {
     });
 
     this.check = [];
-    this.cartService.updateProduct(this.PRODUCTS); 
+    this.cartService.updateProduct(this.PRODUCTS);
     }
 
+  console.log(this.grand);
 
 
     }
@@ -72,6 +73,7 @@ export class CartComponent implements OnInit {
     }
   }
   checkOut(amount: number) {
+   if (this.PRODUCTS.length != 0) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
       locale: 'auto',
@@ -93,6 +95,7 @@ export class CartComponent implements OnInit {
       description: 'payment for product',
       amount: amount * 100,
     });
+   }
   }
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
