@@ -2,15 +2,15 @@
   <p class="text-white text-5xl font-bold">Cart</p>
   <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">Cart</span></p>
 </section>
-<div class="bg-gray-100">
+<div class="bg-gray-100 ">
     <div class="container mx-auto mt-10">
-      <div class="flex shadow-md my-10">
-        <div class="w-3/4 bg-white px-10 py-10">
+      <div class="flex-col shadow-md my-10 sm:flex md:flex-row">
+        <div class="md:w-3/4 bg-white px-10 py-10 w-full">
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
             <h2 class="font-semibold text-2xl">{{PRODUCTS.length}} Items</h2>
           </div>
-          <div class="flex mt-10 mb-5">
+          <div class="flex items-center justify-around w-full mt-10 mb-5">
             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
             <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Quantity</h3>
             <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Price</h3>
@@ -19,7 +19,7 @@
           <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" *ngFor="let item of PRODUCTS,let i = index">
             <div class="flex w-2/5"> <!-- product -->
               <div class="w-20">
-                <img class="h-24 rounded" src="{{item.img}}" alt="">
+                <img class="h-24 rounded " src="{{item.img}}" alt="">
               </div>
               <div class="flex flex-col justify-between ml-4 flex-grow">
                 <span class="font-bold text-sm">{{item.name}}</span>
@@ -48,7 +48,7 @@
           </a>
         </div>
 
-        <div id="summary" class="w-1/4 px-8 py-10">
+        <div id="summary" class="md:w-1/4 px-8 py-10 w-full">
           <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
           <div class="flex justify-between mt-10 mb-5">
             <span class="font-semibold text-sm uppercase">Items {{PRODUCTS.length}}</span>
