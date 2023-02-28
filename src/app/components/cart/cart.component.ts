@@ -7,102 +7,110 @@ import { CheckoutService } from 'src/app/services/checkout.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   // items: Product[] = []
-  PRODUCTS: any = []
-  number:number=1
-  check:any =[]
-  grand: number= 0
+  PRODUCTS: any = [];
+  number: number = 1;
+  check: any = [];
+  grand: number = 0;
   paymentHandler: any = null;
-  currentUser:any = ''
-  constructor(private router:Router,private cartService:CartService,private checkoutService:CheckoutService,private user:AuthRegisterService) { }
+  currentUser: any = '';
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private checkoutService: CheckoutService,
+    private user: AuthRegisterService
+  ) {}
 
   ngOnInit(): void {
-
-    this.cartService.getProducts()
-    this.cartService.myProductArray$.subscribe((prod: any) =>{
-      this.PRODUCTS = prod
-      this.grandTot()
-    })
-    this.invokeStripe()
-  console.log(this.PRODUCTS);
-  this.currentUser = this.user.getUser()
-
+    this.cartService.getProducts();
+    this.cartService.myProductArray$.subscribe((prod: any) => {
+      this.PRODUCTS = prod;
+      this.grandTot();
+    });
+    this.invokeStripe();
+    console.log(this.PRODUCTS);
+    this.currentUser = this.user.getUser();
   }
-  onDelete(i:any){
-      this.cartService.removeFromCart(i);
+  onDelete(i: any) {
+    this.cartService.removeFromCart(i);
   }
-  
-  grandTot(){   
-    for (let index = 0; index < this.PRODUCTS.length; index++) {
-      this.check.push(Number(this.PRODUCTS[index].total))
-    this.grand = this.check.reduce((acc:any,red:any)=>{
-      return acc+ red
-        })
+
+  grandTot() {
+    if(this.PRODUCTS.length != 0){
+   for (let index = 0; index < this.PRODUCTS.length; index++) {
+      this.check.push(Number(this.PRODUCTS[index].total));
+
+       this.grand = this.check.reduce((acc: any, red: any) => {
+      return acc + red;
+    });
+
+    this.check = [];
+    this.cartService.updateProduct(this.PRODUCTS); 
+    }
+
+
 
     }
-    this.check=[]
 
   }
 
-  add(i:any){
-   let b=this.PRODUCTS[i].quantity = this.PRODUCTS[i].quantity+1 ;
+  add(i: any) {
+    let b = (this.PRODUCTS[i].quantity = this.PRODUCTS[i].quantity + 1);
 
-    this.PRODUCTS[i].total=(this.PRODUCTS[i].price*b)
-   this.grandTot()
+    this.PRODUCTS[i].total = this.PRODUCTS[i].price * b;
+    this.grandTot();
   }
-  sub(i:any){
+  sub(i: any) {
     if (this.PRODUCTS[i].quantity > 1) {
-      let b=this.PRODUCTS[i].quantity = this.PRODUCTS[i].quantity-1 ;
+      let b = (this.PRODUCTS[i].quantity = this.PRODUCTS[i].quantity - 1);
 
-      this.PRODUCTS[i].total=(this.PRODUCTS[i].price*b)
-     this.grandTot()
+      this.PRODUCTS[i].total = this.PRODUCTS[i].price * b;
+      this.grandTot();
     }
-    }
-  checkOut(amount:number){
+  }
+  checkOut(amount: number) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
-      locale:'auto',
-      token: function(stripeToken:any){
+      locale: 'auto',
+      token: function (stripeToken: any) {
         console.log(stripeToken);
-        paymentStripe(stripeToken)
-      }
+        paymentStripe(stripeToken);
+      },
     });
-    const paymentStripe = (stripeToken:any)=>{
-      this.checkoutService.makePayment(stripeToken).subscribe((data:any)=>{
+    const paymentStripe = (stripeToken: any) => {
+      this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
         console.log(data);
         if (data) {
-          this.router.navigate(['/payment-status',data])
+          this.router.navigate(['/payment-status', data]);
         }
-      })
-    }
+      });
+    };
     paymentHandler.open({
-      name:this.currentUser.name,
-      description:'payment for product',
-      amount:amount * 100,
+      name: this.currentUser.name,
+      description: 'payment for product',
+      amount: amount * 100,
     });
-
   }
-  invokeStripe(){
+  invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
-        const script = window.document.createElement('script');
-        script.id = 'stripe-script';
-        script.type = 'text/javascript';
-        script.src = 'https://checkout.stripe.com/checkout.js';
-        script.onload = () => {
-          this.paymentHandler = (<any>window).StripeCheckout.configure({
-            key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
-            locale: 'auto',
-            token: function (stripeToken: any) {
-              console.log(stripeToken);
-            },
-          });
-        };
-   
-        window.document.body.appendChild(script);
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+          },
+        });
+      };
+
+      window.document.body.appendChild(script);
     }
   }
-
 }

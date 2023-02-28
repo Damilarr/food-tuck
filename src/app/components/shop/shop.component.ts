@@ -17,13 +17,13 @@ export class ShopComponent implements OnInit {
   constructor(private foodService: FoodsService,private cartService:CartService) {}
   ngOnInit(): void {
 
-
     this.fetchFoods();
     document.getElementById('sort')?.addEventListener('change',this.setFoodType)
   }
   setFoodType = (event:any) =>{
     this.foodType = event.target.value;
     this.fetchFoods()
+
 
   }
   fetchFoods(): void {
@@ -36,7 +36,7 @@ export class ShopComponent implements OnInit {
 
         });
           this.PRODUCTS = response;
-          console.log(this.PRODUCTS);
+
       },
       (error) => {
         console.log(error);
@@ -47,6 +47,8 @@ export class ShopComponent implements OnInit {
     this.page = event;
     this.fetchFoods();
   }
+
+
   onSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
