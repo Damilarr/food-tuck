@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,38 +13,36 @@ export class CartComponent implements OnInit {
   // items: Product[] = []
   PRODUCTS: any = []
   number:number=1
-  constructor(private cartService:CartService) { }
+  check:any =[]
+  grand: number= 0
+  paymentHandler: any = null;
+  currentUser:any = ''
+  constructor(private router:Router,private cartService:CartService,private checkoutService:CheckoutService,private user:AuthRegisterService) { }
 
   ngOnInit(): void {
 
     this.cartService.getProducts()
     this.cartService.myProductArray$.subscribe((prod: any) =>{
-      console.log('cart comp',prod);
       this.PRODUCTS = prod
       this.grandTot()
     })
+    this.invokeStripe()
   console.log(this.PRODUCTS);
+  this.currentUser = this.user.getUser()
 
   }
   onDelete(i:any){
       this.cartService.removeFromCart(i);
   }
-  check:any =[]
-  grand: number= 0
-  grandTot(){
+  
+  grandTot(){   
     for (let index = 0; index < this.PRODUCTS.length; index++) {
-
-        console.log(this.PRODUCTS[index].total);
-
       this.check.push(Number(this.PRODUCTS[index].total))
-
-
     this.grand = this.check.reduce((acc:any,red:any)=>{
       return acc+ red
         })
 
     }
-    console.log(this.check, this.grand);
     this.check=[]
 
   }
@@ -60,5 +61,48 @@ export class CartComponent implements OnInit {
      this.grandTot()
     }
     }
+  checkOut(amount:number){
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
+      locale:'auto',
+      token: function(stripeToken:any){
+        console.log(stripeToken);
+        paymentStripe(stripeToken)
+      }
+    });
+    const paymentStripe = (stripeToken:any)=>{
+      this.checkoutService.makePayment(stripeToken).subscribe((data:any)=>{
+        console.log(data);
+        if (data) {
+          this.router.navigate(['/payment-status',data])
+        }
+      })
+    }
+    paymentHandler.open({
+      name:this.currentUser.name,
+      description:'payment for product',
+      amount:amount * 100,
+    });
+
+  }
+  invokeStripe(){
+    if (!window.document.getElementById('stripe-script')) {
+        const script = window.document.createElement('script');
+        script.id = 'stripe-script';
+        script.type = 'text/javascript';
+        script.src = 'https://checkout.stripe.com/checkout.js';
+        script.onload = () => {
+          this.paymentHandler = (<any>window).StripeCheckout.configure({
+            key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
+            locale: 'auto',
+            token: function (stripeToken: any) {
+              console.log(stripeToken);
+            },
+          });
+        };
+   
+        window.document.body.appendChild(script);
+    }
+  }
 
 }
