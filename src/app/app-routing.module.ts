@@ -12,6 +12,7 @@ import { PaymentStatusComponent } from './components/payment-status/payment-stat
 import { ProfileComponent } from './components/profile/profile.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { ProfileGuard } from './Guards/profile.guard';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path:'contact',component:ContactComponent},
     {path:'page',component:PagesComponent},
     {path:'cart',component:CartComponent},
+    {path:'wish',component:WishlistComponent},
     {path:'payment-status',component:PaymentStatusComponent}
 ];
 
