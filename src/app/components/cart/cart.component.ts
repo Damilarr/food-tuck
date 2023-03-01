@@ -31,7 +31,6 @@ export class CartComponent implements OnInit {
       this.grandTot();
     });
     this.invokeStripe();
-    console.log(this.PRODUCTS);
     this.currentUser = this.user.getUser();
   }
   onDelete(i: any) {
@@ -50,10 +49,6 @@ export class CartComponent implements OnInit {
     this.check = [];
     this.cartService.updateProduct(this.PRODUCTS);
     }
-
-  console.log(this.grand);
-
-
     }
 
   }
@@ -78,13 +73,11 @@ export class CartComponent implements OnInit {
       key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken);
         paymentStripe(stripeToken);
       },
     });
     const paymentStripe = (stripeToken: any) => {
       this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
-        console.log(data);
         if (data) {
           this.router.navigate(['/payment-status', data]);
         }
@@ -108,7 +101,6 @@ export class CartComponent implements OnInit {
           key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken);
           },
         });
       };

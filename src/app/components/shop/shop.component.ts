@@ -39,7 +39,6 @@ export class ShopComponent implements OnInit {
 
       },
       (error) => {
-        console.log(error);
       }
     );
   }
