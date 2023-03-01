@@ -10,7 +10,6 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  username:string =''
   formData:any;
   submitted=false;
   toastText:any = ''
@@ -19,7 +18,6 @@ export class SignUpComponent implements OnInit {
     this.formData= this.fb.group({
       name:["",[Validators.required, Validators.minLength(3),Validators.maxLength(30)]],
       email:["", [Validators.required, Validators.email]],
-      userName:["", [Validators.required]],
       password:["", [Validators.required,Validators.pattern('[a-zA-Z0-9]{8,30}$')]],
     })
   }
