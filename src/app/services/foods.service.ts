@@ -10,7 +10,7 @@ export class FoodsService {
   api_url = environment.SERVER_URL;
   constructor(private http:HttpClient) { }
   getFoods(foodType:string): Observable<any> {
-    // return this.http.get(`https://free-food-menus-api-production.up.railway.app/${foodType}`);
-    return this.http.get(`http://localhost:3200/${foodType}`);
+    return this.http.get(`https://free-food-menus-api-production.up.railway.app/${foodType}`);
+    // return this.http.get(`http://localhost:3200/${foodType}`);
   }
 }
