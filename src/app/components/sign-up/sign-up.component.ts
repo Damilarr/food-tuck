@@ -44,7 +44,6 @@ export class SignUpComponent implements OnInit {
     this.submitted=true;
     this.regservice.signUp(this.formData.value).subscribe((response)=>{
     this.submitted=false;
-    console.log(response);
     if (response.status == 'success') {
       this.toastText = response.message
       document?.getElementById('toastBtn')?.click()

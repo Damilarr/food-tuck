@@ -32,7 +32,6 @@ export class CartService {
       productArr.push(prodct)
 
 
-      console.log('producarr',productArr);
       productArr.forEach((productt: { id: any; }) => {
         let found = this.product._value.find((product: any)=>{return product.id == productt.id })
         if (!found) {
@@ -41,14 +40,12 @@ export class CartService {
       });
     }else{
       this.product._value. push(prodct)
-      console.log(prodct);
     }
     this.setCartQuantity(this.product._value.length)
     localStorage.setItem('cart-items',JSON.stringify(this.product._value))
   }
   getProducts(){
     let prod = JSON.parse(localStorage.getItem('cart-items') || '{}' );
-    console.log('prod',prod);
     if (prod.length > 0) {
       if (this.product._value.length > 0) {
         prod.forEach((productt: { id: any; }) => {

@@ -42,14 +42,11 @@ export class LoginComponent implements OnInit {
     this.submitted=true;
     this.regservice.signIn(this.loginData.value).subscribe((response)=>{
     this.submitted=false;
-    console.log(response);
     if (response.auth) {
       this.validateResponse(response)
     }
     },(error: HttpErrorResponse) => {
-        console.log(error.error.message)
         this.toastText = error.error.message
-        console.log('message set');
         document?.getElementById('toastBtn')?.click()
         this.submitted = false
     })
@@ -68,13 +65,11 @@ export class LoginComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
       this.regservice.signWithGoogle(user).subscribe((response)=>{
-        console.log(response);
         if (response.auth) {
           this.validateResponse(response)
         }
         },(error: HttpErrorResponse) => {
-            console.log(error.error.message)
-            this.toastText = error.error.message
+            this.toastText = 'Failed to sign in. Please try again in a minutes'
             document?.getElementById('toastBtn')?.click()
         })
     });
