@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
     this.currentUser = this.user.getUser();
   }
   onDelete(i: any) {
+    this.grandTot()
     this.cartService.removeFromCart(i);
   }
 
@@ -48,9 +49,13 @@ export class CartComponent implements OnInit {
       return acc + red;
     });
 
-    this.check = [];
-    this.cartService.updateProduct(this.PRODUCTS);
+    // this.cartService.updateProduct(this.PRODUCTS);
     }
+  console.log(this.check);
+  console.log(this.grand);
+  this.check = [];
+
+  this.cartService.storeCart(this.PRODUCTS)
     }
 
   }
