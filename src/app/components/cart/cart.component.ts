@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   grand: number = 0;
   paymentHandler: any = null;
   currentUser: any = '';
+  private productSub:any;
+  private checkoutSub:any;
   constructor(
     private router: Router,
     private cartService: CartService,
@@ -26,12 +28,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts();
-    this.cartService.myProductArray$.subscribe((prod: any) => {
+    this.productSub = this.cartService.myProductArray$.subscribe((prod: any) => {
       this.PRODUCTS = prod;
       this.grandTot();
     });
     this.invokeStripe();
-    console.log(this.PRODUCTS);
     this.currentUser = this.user.getUser();
   }
   onDelete(i: any) {
@@ -50,10 +51,6 @@ export class CartComponent implements OnInit {
     this.check = [];
     this.cartService.updateProduct(this.PRODUCTS);
     }
-
-  console.log(this.grand);
-
-
     }
 
   }
@@ -78,13 +75,11 @@ export class CartComponent implements OnInit {
       key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken);
         paymentStripe(stripeToken);
       },
     });
     const paymentStripe = (stripeToken: any) => {
-      this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
-        console.log(data);
+      this.checkoutSub = this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
         if (data) {
           this.router.navigate(['/payment-status', data]);
         }
@@ -108,12 +103,15 @@ export class CartComponent implements OnInit {
           key: 'pk_test_51MftATCJPPAhstz08LDnTFwL7tRozpMUk3odNt6tlxOqJBhF8CcEii9VivImYPEhZ2eNP9UPzBpOmmulDstEYXS100xl8RIGUt',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken);
           },
         });
       };
 
       window.document.body.appendChild(script);
     }
+  }
+  ngOnDestroy():void{
+    this.productSub.unsubscribe();
+    this.checkoutSub.unsubscribe();
   }
 }

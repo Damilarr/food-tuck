@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class CheckoutService {
 
   constructor(private http:HttpClient) { }
-  makePayment(stripeToken:any):Observable<any>{
+  makePayment(stripeToken?:any):Observable<any>{
     const url = `${environment.SERVER_URL}/checkout`
     return this.http.post<any>(url,{token:stripeToken});
   }

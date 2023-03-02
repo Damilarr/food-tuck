@@ -11,7 +11,7 @@ import { PagesComponent } from './components/pages/pages.component';
 import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ShopComponent } from './components/shop/shop.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignUpComponent } from './components/shop/sign-up/sign-up.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { ProfileGuard } from './Guards/profile.guard';
 
@@ -27,8 +27,8 @@ const routes: Routes = [
     {path:'sign-up',component:SignUpComponent},
     {path:'contact',component:ContactComponent},
     {path:'page',component:PagesComponent},
-    {path:'cart',component:CartComponent},
     {path:'wish',component:WishlistComponent},
+    {path:'cart',component:CartComponent,canActivate:[ProfileGuard]},
     {path:'payment-status',component:PaymentStatusComponent}
 ];
 

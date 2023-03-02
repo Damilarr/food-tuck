@@ -7,8 +7,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./payment-status.component.css']
 })
 export class PaymentStatusComponent implements OnInit {
-  STATUS:any =[]
-  STATUS2:any = ''
+  STATUS:any =[];
+  STATUS2:any = '';
+  private paramSub:any;
 
   constructor(private route:ActivatedRoute) { }
 
@@ -17,6 +18,10 @@ export class PaymentStatusComponent implements OnInit {
       this.STATUS2 = params.get('data');
       this.STATUS.push({data:this.STATUS2})
     })
+  }
+  ngOnDestroy(): void {
+    this.paramSub.unsubscribe()
+    
   }
 
 }

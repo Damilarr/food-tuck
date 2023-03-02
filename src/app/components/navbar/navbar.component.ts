@@ -9,6 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class NavbarComponent implements OnInit {
   cartQuantity:any = 0
+  private cartquant:any;
   constructor(private cartService:CartService
     ) { }
   openNav(){
@@ -20,9 +21,13 @@ export class NavbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.cartService.getProducts()
-    this.cartService.myValue$.subscribe((quantity:any)=>{
+    this.cartquant = this.cartService.myValue$.subscribe((quantity:any)=>{
       this.cartQuantity = quantity
     })
+  }
+  ngOnDestroy(): void {
+    this.cartquant.unsubscribe()
+    
   }
 
 }

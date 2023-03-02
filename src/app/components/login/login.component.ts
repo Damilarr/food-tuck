@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   submitted=false;
   toastText:any = ''
   showPassword: any;
+  private signInSub:any;
+  private authSub:any;
+  private googleSub:any;
   constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private authService: SocialAuthService) { 
     this.loginData= this.fb.group({
       email:["", [Validators.required, Validators.email]],
@@ -40,16 +43,13 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.submitted=true;
-    this.regservice.signIn(this.loginData.value).subscribe((response)=>{
+    this.signInSub = this.regservice.signIn(this.loginData.value).subscribe((response)=>{
     this.submitted=false;
-    console.log(response);
     if (response.auth) {
       this.validateResponse(response)
     }
     },(error: HttpErrorResponse) => {
-        console.log(error.error.message)
         this.toastText = error.error.message
-        console.log('message set');
         document?.getElementById('toastBtn')?.click()
         this.submitted = false
     })
@@ -64,17 +64,15 @@ export class LoginComponent implements OnInit {
     }, 4000);
   }
   ngOnInit():void {
-    this.authService.authState.subscribe((user) => {
+   this.authSub = this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      this.regservice.signWithGoogle(user).subscribe((response)=>{
-        console.log(response);
+      this.googleSub = this.regservice.signWithGoogle(user).subscribe((response)=>{
         if (response.auth) {
           this.validateResponse(response)
         }
         },(error: HttpErrorResponse) => {
-            console.log(error.error.message)
-            this.toastText = error.error.message
+            this.toastText = 'Failed to sign in. Please try again in a minutes'
             document?.getElementById('toastBtn')?.click()
         })
     });
@@ -86,6 +84,11 @@ export class LoginComponent implements OnInit {
     this.showPassword.type == 'password'
       ? (this.showPassword.type = 'text')
       : (this.showPassword.type = 'password');
+  }
+  ngOnDestroy(): void {
+    this.googleSub.unsubscribe();
+    this.signInSub.unsubscribe()
+    this.authSub.unsubscribe();
   }
 
 }

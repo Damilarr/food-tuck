@@ -14,9 +14,9 @@ export class ShopComponent implements OnInit {
   tableSize: number = 8;
   tableSizes: any = [3, 6, 9, 12];
   foodType:string = 'best-foods'
+  private foodSub:any;
   constructor(private foodService: FoodsService,private cartService:CartService) {}
   ngOnInit(): void {
-
     this.fetchFoods();
     document.getElementById('sort')?.addEventListener('change',this.setFoodType)
   }
@@ -27,7 +27,7 @@ export class ShopComponent implements OnInit {
 
   }
   fetchFoods(): void {
-    this.foodService.getFoods(this.foodType).subscribe(
+    this.foodSub = this.foodService.getFoods(this.foodType).subscribe(
       (response) => {
 
         response.forEach(function (element:any) {
@@ -39,7 +39,6 @@ export class ShopComponent implements OnInit {
 
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -58,6 +57,11 @@ export class ShopComponent implements OnInit {
    let prod =  this.PRODUCTS.find((product: any)=>{return product.id == id })
    this.cartService.addToCart(prod)
    alert( `successfully added ${prod.name} to cart`)
+  }
+  ngOnDestroy(): void {
+    this.foodSub.unsubscribe()
+    document.getElementById('sort')?.removeEventListener('change',this.setFoodType)
+
   }
 
 }

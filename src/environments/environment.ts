@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SERVER_URL: 'http://localhost:3007'
+  SERVER_URL: 'https://food-tuck-server-production.up.railway.app'
 };
 
 /*

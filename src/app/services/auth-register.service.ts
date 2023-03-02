@@ -15,7 +15,7 @@ export class AuthRegisterService {
     return this.http.post<any>(url,user);
   }
   signIn(user:any): Observable<any>{
-    let url =  `${this.SERVER_URL}/login`
+    let url =  `${this.SERVER_URL}/register/login`
     return this.http.post<any>(url,user)
   }
   signWithGoogle(idToken:any): Observable<any>{
