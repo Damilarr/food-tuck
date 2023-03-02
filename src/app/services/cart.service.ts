@@ -21,6 +21,9 @@ export class CartService {
   setCartQuantity(newValue:number){
     this.cartQuantity.next(newValue);
   }
+  storeCart(products:any){
+    localStorage.setItem('cart-items',JSON.stringify(products));
+  }
   updateProduct(products:any){
     this.product.next(products);
     localStorage.removeItem('cart-items');
