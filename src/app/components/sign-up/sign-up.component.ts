@@ -14,6 +14,7 @@ export class SignUpComponent implements OnInit {
   submitted=false;
   toastText:any = ''
   showPassword='password'
+  private signUpSubscribtion:any ;
   constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) {
     this.formData= this.fb.group({
       name:["",[Validators.required, Validators.minLength(3),Validators.maxLength(30)]],
@@ -42,7 +43,7 @@ export class SignUpComponent implements OnInit {
   submit(){
     alert()
     this.submitted=true;
-    this.regservice.signUp(this.formData.value).subscribe((response)=>{
+    this.signUpSubscribtion = this.regservice.signUp(this.formData.value).subscribe((response)=>{
     this.submitted=false;
     if (response.status == 'success') {
       this.toastText = response.message
@@ -61,6 +62,9 @@ export class SignUpComponent implements OnInit {
   }
   ngOnInit(): void {
     window?.scrollTo(0,0)
+  }
+  ngOnDestroy(): void {
+    this.signUpSubscribtion.unsubscribe()
   }
 
  show() {
