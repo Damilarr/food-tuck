@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   grand: number = 0;
   paymentHandler: any = null;
   currentUser: any = '';
+  private productSub:any;
+  private checkoutSub:any;
   constructor(
     private router: Router,
     private cartService: CartService,
@@ -26,7 +28,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts();
-    this.cartService.myProductArray$.subscribe((prod: any) => {
+    this.productSub = this.cartService.myProductArray$.subscribe((prod: any) => {
       this.PRODUCTS = prod;
       this.grandTot();
     });
@@ -77,7 +79,7 @@ export class CartComponent implements OnInit {
       },
     });
     const paymentStripe = (stripeToken: any) => {
-      this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
+      this.checkoutSub = this.checkoutService.makePayment(stripeToken).subscribe((data: any) => {
         if (data) {
           this.router.navigate(['/payment-status', data]);
         }
@@ -107,5 +109,9 @@ export class CartComponent implements OnInit {
 
       window.document.body.appendChild(script);
     }
+  }
+  ngOnDestroy():void{
+    this.productSub.unsubscribe();
+    this.checkoutSub.unsubscribe();
   }
 }
