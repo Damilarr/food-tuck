@@ -13,6 +13,7 @@ export class ShopComponent implements OnInit {
   count: number = 0;
   tableSize: number = 8;
   tableSizes: any = [3, 6, 9, 12];
+  toastText:any = ''
   foodType:string = 'best-foods'
   private foodSub:any;
   constructor(private foodService: FoodsService,private cartService:CartService) {}
@@ -56,12 +57,19 @@ export class ShopComponent implements OnInit {
   getFoodProduct(id:string){
    let prod =  this.PRODUCTS.find((product: any)=>{return product.id == id })
    this.cartService.addToCart(prod)
-   alert( `successfully added ${prod.name} to cart`)
+   console.log('adding');
+   this.toastText = `Successfully added ${prod.name} to cart`
+   this.showToast()
   }
   ngOnDestroy(): void {
-    this.foodSub.unsubscribe()
+    this.foodSub.unsubscribe();
     document.getElementById('sort')?.removeEventListener('change',this.setFoodType)
-
+  }
+  showToast() {
+    document?.getElementById("myToast")?.classList.remove("hidden");
+    setTimeout(function () {
+        document?.getElementById("myToast")?.classList.add("hidden");
+    }, 3000);
   }
 
 }

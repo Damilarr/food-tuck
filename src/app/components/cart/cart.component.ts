@@ -51,8 +51,8 @@ export class CartComponent implements OnInit {
 
     // this.cartService.updateProduct(this.PRODUCTS);
     }
-  console.log(this.check);
-  console.log(this.grand);
+  // console.log(this.check);
+  // console.log(this.grand);
   this.check = [];
 
   this.cartService.storeCart(this.PRODUCTS)
@@ -116,7 +116,5 @@ export class CartComponent implements OnInit {
     }
   }
   ngOnDestroy():void{
-    this.productSub.unsubscribe();
-    this.checkoutSub.unsubscribe();
   }
 }

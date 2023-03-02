@@ -2,7 +2,7 @@
   <p class="text-white text-5xl font-bold">Our Shop</p>
   <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">Shop</span></p>
 </section>
- <div class="bg-white flex-col-reverse lg:flex-row flex lg:items-start space-x-0 lg:space-x-3 items-center lg:justify-around p-4">
+ <div class="bg-white relative flex-col-reverse lg:flex-row flex lg:items-start space-x-0 lg:space-x-3 items-center lg:justify-around p-4">
     <div class="flex flex-col w-11/12 sm:w-10/12 lg:w-9/12 justify-around items-center relative mx-auto shadow-md p-3">
         <div class="form-control px-2 font-bold  shadow-2xl shadow-yelloww bg-white rounded-sm absolute left-3 z-20 m-3 top-0" >
             <label for="sort">Sort By:</label>
@@ -86,4 +86,10 @@
             <label for="Pork">Pork</label>
         </div>
     </div>
+</div>
+<div id="myToast" class="hidden fixed right-0 left-0 top-0 z-50 px-5 py-4 border-r-8 border-blue-500 bg-green-500 drop-shadow-lg">
+  <p class="text-base text-white font-bold">
+      <span class="mr-2 inline-block px-3 py-1 rounded-full bg-blue-500 text-white font-extrabold">i</span>
+      {{toastText}}
+  </p>
 </div>

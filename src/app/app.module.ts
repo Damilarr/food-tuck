@@ -18,7 +18,7 @@ import { CountComponent } from './components/count/count.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SignUpComponent } from './components/shop/sign-up/sign-up.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact/contact.component';
 import { PagesComponent } from './components/pages/pages.component';

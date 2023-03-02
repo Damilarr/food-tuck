@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     })
   }
   validateResponse(resp:any){
-    this.toastText = resp.message
+    this.toastText = resp.message;
     document?.getElementById('toastBtn')?.click()
     this.regservice.setUser(resp.user)
     sessionStorage.setItem('TOKEN',resp.token);
@@ -86,9 +86,7 @@ export class LoginComponent implements OnInit {
       : (this.showPassword.type = 'password');
   }
   ngOnDestroy(): void {
-    this.googleSub.unsubscribe();
-    this.signInSub.unsubscribe()
-    this.authSub.unsubscribe();
+    
   }
 
 }
