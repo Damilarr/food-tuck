@@ -21,7 +21,14 @@
             <!-- Password input -->
             <div class="mb-6 ">
               <div class="form-control shadow flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
-              <i class="fa fa-eye mr-3  flex items-center p-3 py-2 " (click)="show()" ></i>
+                <i
+                class="{{
+                  eye
+                    ? ' fa fa-eye-slash  mr-3  flex items-center p-3 py-2'
+                    : ' fa fa-eye mr-3  flex items-center p-3 py-2'
+                }}"
+                (click)="show()"
+              ></i>
 
                 <input
                 id="passwordInp"

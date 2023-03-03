@@ -1,92 +1,135 @@
-<section class="bg-banner bg-cover bg-bottom h-52 justify-center py-4 flex flex-col items-center">
-    <p class="text-white text-5xl font-bold">Sign Up</p>
-    <p class="text-white text-base"><a routerLink="/">Home</a> &#60; <span class="text-yelloww">Sign up</span></p>
+<section
+  class="bg-banner bg-cover bg-bottom h-52 justify-center py-4 flex flex-col items-center"
+>
+  <p class="text-white text-5xl font-bold">Sign Up</p>
+  <p class="text-white text-base">
+    <a routerLink="/">Home</a> &#60; <span class="text-yelloww">Sign up</span>
+  </p>
 </section>
 <section class="h-screen bg-[#fffbf5] flex justify-center items-center">
-    <div class="container mx-auto py-3">
-      <div class="bg-white flex justify-center items-center flex-wrap g-6 text-gray-800 pt-5 pb-5">
-        <!-- <div class="md:w-8/12 lg:w-5/12 lg:ml-20"> -->
-          <div class="w-full max-w-sm ">
-          <form novalidate (ngSubmit)="submit()" class="form-body mb-6 " [formGroup]="formData">
-            <!-- Email input -->
-            <div class="mb-6">
-              <input
-                type="text"
-                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
-                placeholder="Name"
-                formControlName="name"
-              />
-              <small class="text-red-700" *ngIf="name?.invalid && name?.touched">Please enter a valid Name without any special characters</small>
-            </div>
+  <div class="container mx-auto">
+    <div
+      class="bg-white flex justify-center items-center flex-wrap g-9 text-gray-800 pt-6 pb-3"
+    >
+      <!-- <div class="md:w-8/12 lg:w-5/12 lg:ml-20"> -->
+      <div class="w-full max-w-sm">
+        <form
+          novalidate
+          (ngSubmit)="submit()"
+          class="form-body mb-6"
+          [formGroup]="formData"
+        >
+          <!-- Email input -->
+          <div class="mb-6">
+            <input
+              type="text"
+              class="form-control block shadow w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
+              placeholder="Name"
+              formControlName="name"
+            />
+            <small class="text-red-700" *ngIf="name?.invalid && name?.touched"
+              >Please enter a valid Name without any special characters</small
+            >
+          </div>
 
-            <div class="mb-6">
+          <div class="mb-6">
+            <input
+              type="text"
+              class="form-control block shadow w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <small class="text-red-700" *ngIf="email?.invalid && email?.touched"
+              >Please enter a valid Email
+            </small>
+          </div>
+          <!-- Password input -->
+          <div class="mb-6">
+            <div
+              class="form-control shadow flex w-full py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
+            >
+              <i
+                class="{{
+                  eye
+                    ? ' fa fa-eye-slash  mr-3  flex items-center p-3 py-2'
+                    : ' fa fa-eye mr-3  flex items-center p-3 py-2'
+                }}"
+                (click)="show()"
+              ></i>
               <input
-                type="text"
-                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
-                placeholder="Email"
-                formControlName="email"
-              />
-              <small class="text-red-700" *ngIf="email?.invalid && email?.touched">Please enter a valid Email </small>
-            </div>
-            <!-- Password input -->
-            <div class="mb-6 ">
-              <div class="form-control shadow flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
-              <i class="fa fa-eye mr-3  flex items-center p-3 py-2 " (click)="show()" ></i>
-
-                <input
                 [type]="showPassword"
-                class=" text-xl font-normal w-4/5  text-gray-700 bg-white bg-clip-padding  py-2 focus:text-gray-700 focus:bg-white  focus:outline-none"
+                class="text-xl font-normal w-4/5 text-gray-700 bg-white bg-clip-padding py-2 focus:text-gray-700 focus:bg-white focus:outline-none"
                 placeholder="Password"
                 formControlName="password"
-
               />
             </div>
-              <small class="text-red-700" *ngIf="password?.invalid && password?.touched">Password should contain capital,small letters and Numbers and 8 characters minimum</small>
-            </div>
+            <small
+              class="text-red-700"
+              *ngIf="password?.invalid && password?.touched"
+              >Password should contain capital,small letters and Numbers and 8
+              characters minimum</small
+            >
+          </div>
 
-            <div class="flex justify-between items-center mb-6">
-              <div class="form-group form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-yelloww checked:border-yellow-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  id="Check3"
-                  checked
-                />
-                <label class="form-check-label inline-block text-gray-800" for="Check3"
-                  >Remember me</label
-                >
-              </div>
-              <a
-                href="#!"
-                class="text-black focus:text-slate-800 active:text-yelloww duration-200 transition ease-in-out"
-                >Forgot password?</a
+          <div class="flex justify-between items-center mb-6">
+            <div class="form-group form-check">
+              <input
+                type="checkbox"
+                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-yelloww checked:border-yellow-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                id="Check3"
+                checked
+              />
+              <label
+                class="form-check-label inline-block text-gray-800"
+                for="Check3"
+                >Remember me</label
               >
             </div>
-
-            <!-- Submit button -->
-            <button
-              type="submit"
-              class="inline-block px-7 py-3 bg-yelloww text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yelloww focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yelloww active:shadow-lg transition duration-150 ease-in-out w-full"
-              [disabled]="formData.invalid || submitted"
-              [ngStyle]="{'cursor': formData.invalid ? 'not-allowed' : 'pointer' }"
+            <a
+              href="#!"
+              class="text-black focus:text-slate-800 active:text-yelloww duration-200 transition ease-in-out"
+              >Forgot password?</a
             >
-              Sign Up
-            </button>
+          </div>
 
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="inline-block px-7 py-3 bg-yelloww text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yelloww focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yelloww active:shadow-lg transition duration-150 ease-in-out w-full"
+            [disabled]="formData.invalid || submitted"
+            [ngStyle]="{ cursor: formData.invalid ? 'not-allowed' : 'pointer' }"
+          >
+            Sign Up
+          </button>
 
-            <p class="text-xl mt-2">Have an account ? <a routerLink="/login" class="text-yelloww">Sign In</a></p>
-          </form>
-        </div>
+          <p class="text-xl mt-2">
+            Have an account ?
+            <a routerLink="/login" class="text-yelloww">Sign In</a>
+          </p>
+        </form>
       </div>
     </div>
-    <div class="mt-10 space-x-5 hidden">
-        <button (click)="showToast()" id="toastBtn" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white">Show Toast</button>
-    </div>
-  </section>
+  </div>
+  <div class="mt-10 space-x-5 hidden">
+    <button
+      (click)="showToast()"
+      id="toastBtn"
+      class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white"
+    >
+      Show Toast
+    </button>
+  </div>
+</section>
 <!-- Implement the toast -->
-<div id="myToast" class="hidden fixed right-0 left-0 bottom-10 z-50 px-5 py-4 border-r-8 border-blue-500 bg-[#13945e] drop-shadow-lg">
-    <p class="text-sm">
-        <span class="mr-2 inline-block px-3 py-1 rounded-full bg-blue-500 text-white font-extrabold">i</span>
-        {{toastText}}
-    </p>
+<div
+  id="myToast"
+  class="hidden fixed right-0 left-0 bottom-10 z-50 px-5 py-4 border-r-8 border-blue-500 bg-[#13945e] drop-shadow-lg"
+>
+  <p class="text-sm">
+    <span
+      class="mr-2 inline-block px-3 py-1 rounded-full bg-blue-500 text-white font-extrabold"
+      >i</span
+    >
+    {{ toastText }}
+  </p>
 </div>
