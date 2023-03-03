@@ -61,7 +61,7 @@
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               [disabled]="loginData.invalid || submitted"
-             
+             [ngStyle]="{'cursor': loginData.invalid ? 'not-allowed' : 'pointer' }"
             >
               Sign in
             </button>

@@ -30,7 +30,7 @@
             </div>
             <!-- Password input -->
             <div class="mb-6 ">
-              <div class="form-control flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
+              <div class="form-control shadow flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
               <i class="fa fa-eye mr-3  flex items-center p-3 py-2 " (click)="show()" ></i>
 
                 <input
@@ -68,6 +68,7 @@
               type="submit"
               class="inline-block px-7 py-3 bg-yelloww text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yelloww focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yelloww active:shadow-lg transition duration-150 ease-in-out w-full"
               [disabled]="formData.invalid || submitted"
+              [ngStyle]="{'cursor': formData.invalid ? 'not-allowed' : 'pointer' }"
             >
               Sign Up
             </button>
