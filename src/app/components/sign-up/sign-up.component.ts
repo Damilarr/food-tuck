@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit {
     window?.scrollTo(0,0)
   }
   ngOnDestroy(): void {
-    this.signUpSubscribtion.unsubscribe()
+    // this.signUpSubscribtion.unsubscribe()
   }
 
  show() {

@@ -5,13 +5,14 @@
 <section class="h-screen bg-[#fffbf5]">
     <div class="container mx-auto px-6 py-12 h-full">
       <div class="bg-white flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-        <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+        <!-- <div class="md:w-8/12 lg:w-5/12 lg:ml-20"> -->
+          <div class="w-full max-w-xs">
           <form novalidate (ngSubmit)="login()" class="form-body" [formGroup]="loginData">
             <!-- Email input -->
             <div class="mb-6">
               <input
                 type="text"
-                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
+                class="form-control shadow w-full px-4 py-3 sm:text-lg text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none"
                 placeholder="Email"
                 formControlName="email"
               />
@@ -19,12 +20,12 @@
 
             <!-- Password input -->
             <div class="mb-6 ">
-              <div class="form-control flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
+              <div class="form-control shadow flex w-full  py-1 border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yelloww focus:outline-none">
               <i class="fa fa-eye mr-3  flex items-center p-3 py-2 " (click)="show()" ></i>
 
                 <input
                 id="passwordInp"
-                class=" text-xl font-normal w-96  text-gray-700 bg-white bg-clip-padding  py-2 focus:text-gray-700 focus:bg-white  focus:outline-none"
+                class=" text-xl font-normal w-4/5 text-lg  text-gray-700 bg-white bg-clip-padding  py-2 focus:text-gray-700 focus:bg-white  focus:outline-none"
                 placeholder="Password"
                 type="password"
                 formControlName="password"
@@ -32,7 +33,7 @@
               />
             </div>
              </div>
-           
+
 
             <div class="flex justify-between items-center mb-6">
               <div class="form-group form-check">
@@ -73,13 +74,13 @@
             <a
               class=" text-black border bg-transparent relative border-transparent font-medium text-sm leading-snug uppercase rounded hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
               style="background-color: #ffffff"
-              role="button"   
+              role="button"
             >
               <!-- Google -->
-              <asl-google-signin-button width="400" id="sgn-btn" class="" type='standard' size='large' shape="rectangular" text="signin_with"></asl-google-signin-button>    
+              <asl-google-signin-button width="250" id="sgn-btn" class="" type='standard' size='large' shape="rectangular" text="signin_with"></asl-google-signin-button>
           </a>
             <a
-              class="px-7 mb-3 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
+              class="px-5 mb-3 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
               style="background-color: #55acee"
               href="#!"
               role="button"
