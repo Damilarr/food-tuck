@@ -13,6 +13,7 @@ export class SignUpComponent implements OnInit {
   formData:any;
   submitted=false;
   toastText:any = ''
+  eye:any = false
   showPassword='password'
   private signUpSubscribtion:any ;
   constructor(private router:Router,private fb:FormBuilder,private regservice:AuthRegisterService,private signInAuth:AuthServiceService) {
@@ -64,12 +65,12 @@ export class SignUpComponent implements OnInit {
     window?.scrollTo(0,0)
   }
   ngOnDestroy(): void {
-    this.signUpSubscribtion.unsubscribe()
+    // this.signUpSubscribtion.unsubscribe()
   }
 
  show() {
     this.showPassword == 'password'
-      ? (this.showPassword = 'text')
-      : (this.showPassword = 'password');
+      ? (this.showPassword = 'text', this.eye= true)
+      : (this.showPassword = 'password', this.eye = false);
   }
 }
