@@ -18,6 +18,7 @@ export class ShopComponent implements OnInit {
   private foodSub:any;
   constructor(private foodService: FoodsService,private cartService:CartService) {}
   ngOnInit(): void {
+    window?.scrollTo(0,0)
     this.fetchFoods();
     document.getElementById('sort')?.addEventListener('change',this.setFoodType)
   }
