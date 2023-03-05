@@ -14,9 +14,9 @@
     <div class="flex justify-around items-center space-x-3 text-white">
         <a href=""><i class="fa fa-search text-base"></i></a>
         <a routerLink="profile" ><i class="fa fa-user text-base"></i></a>
-        <i class="fa-regular fa-heart text-base" matBadge="0" matBadgeColor="primary"></i>
+        <i class="fa-regular fa-heart text-base" matBadge="{{wishQuantity}}" matBadgeColor="primary" routerLink="/wish"></i>
         <a routerLink="cart" ><i class="fa-solid fa-cart-shopping text-base" matBadge="{{cartQuantity}}" matBadgeColor="primary"></i></a>
-        
+
     </div>
     <button class="bg-yelloww px-3 md:hidden focus: py-1 relative"><i class="fa fa-bars text-lg text-white" (click)="openNav()" id="navBtn"></i></button>
     <div class="flex-col z-50 justify-center hidden w-screen animate-fadeInSlideRight top-0 duration-1000 h-screen fixed bg-dark" id="mobileNav" (click)="closeNav()">
