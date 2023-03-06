@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window?.scrollTo(0,0)
     this.cartService.getProducts();
     this.productSub = this.cartService.myProductArray$.subscribe((prod: any) => {
       this.PRODUCTS = prod;

@@ -23,6 +23,7 @@ export class ShopComponent implements OnInit {
     private wishService: WishListService
   ) {}
   ngOnInit(): void {
+    window?.scrollTo(0,0)
     this.fetchFoods();
     document
       .getElementById('sort')

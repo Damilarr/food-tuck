@@ -14,6 +14,7 @@ export class PaymentStatusComponent implements OnInit {
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    window?.scrollTo(0,0)
     this.route.paramMap.subscribe((params:ParamMap)=>{
       this.STATUS2 = params.get('data');
       this.STATUS.push({data:this.STATUS2})

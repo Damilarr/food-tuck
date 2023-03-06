@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
     }, 3000);
   }
   ngOnInit(): void {
+    window?.scrollTo(0,0)
     document.querySelectorAll('#tabz .btn')?.forEach((element:any) => {
       element.addEventListener('click',this.clicked);
     });
