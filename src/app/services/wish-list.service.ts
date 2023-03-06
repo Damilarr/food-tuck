@@ -17,10 +17,13 @@ export class WishListService {
   private wishQuantity = new BehaviorSubject<number>(0);
   myValue$ = this.wishQuantity.asObservable();
 
+
+
   setWishQuantity(newValue:number){
     this.wishQuantity.next(newValue);
 
   }
+
 
   storeCart(products:any){
     localStorage.setItem('cart-items',JSON.stringify(products));
@@ -44,6 +47,7 @@ export class WishListService {
     this.setWishQuantity(this.product._value.length)
     localStorage.setItem('wish-items',JSON.stringify(this.product._value))
   }
+
 
   updateProduct(products:any){
     this.product.next(products);

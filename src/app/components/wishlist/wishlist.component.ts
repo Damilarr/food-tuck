@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { WishListService } from 'src/app/services/wish-list.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class WishlistComponent implements OnInit {
   PRODUCTS: any = [];
   private productSub:any;
   constructor(
-    private wishService: WishListService
+    private wishService: WishListService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -19,6 +21,16 @@ export class WishlistComponent implements OnInit {
       this.PRODUCTS = prod;
     });
     console.log(this.wishService.myProductArray$);
+
+  }
+  moveToCart(id:any, i:any){
+
+    let check = this.PRODUCTS.find((prod:any)=>{
+      return prod.id == id
+    })
+   this.cartService.addToCart(check)
+
+  this.remove(i)
 
   }
   remove(i:any){

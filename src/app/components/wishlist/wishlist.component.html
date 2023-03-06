@@ -71,6 +71,7 @@
         <p class="font-bold text-lg">{{ item.name }}</p>
         <p class="font-bold">{{ item.price | currency }}</p>
         <button
+        (click)="moveToCart(item.id, i)"
           class="btn btn-yelloww block shadow p-1 hover:text-white hover:bg-yellow-500 round rounded"
         >
           <i class="fa-solid fa-cart-shopping"></i> Move to Cart
