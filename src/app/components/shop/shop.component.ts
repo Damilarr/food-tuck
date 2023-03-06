@@ -61,18 +61,18 @@ export class ShopComponent implements OnInit {
     });
 
     this.cartService.addToCart(prod);
-    console.log('adding');
+
     this.toastText = `Successfully added ${prod.name} to cart`;
     this.showToast();
   }
   getWishListProduct(id: string) {
-    alert(id)
+    
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
 
     this.wishService.addToWish(prod);
-    console.log('adding');
+
     this.toastText = `Successfully added ${prod.name} to Wish-list`;
     this.showToast();
   }
