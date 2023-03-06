@@ -53,7 +53,7 @@ export class WishListService {
 
   getProducts(){
     let prod = JSON.parse(localStorage.getItem('wish-items') || '{}' );
-    
+
     console.log(this.product);
 
     if (prod.length > 0) {
@@ -68,6 +68,11 @@ export class WishListService {
         this.updateProduct(prod)
       }
     }
+    this.setWishQuantity(this.product._value.length)
+  }
+    removeFromWish(i:any){
+    this.product._value.splice(i,1)
+    this.updateProduct(this.product._value)
     this.setWishQuantity(this.product._value.length)
   }
 }

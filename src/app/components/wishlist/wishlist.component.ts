@@ -21,5 +21,7 @@ export class WishlistComponent implements OnInit {
     console.log(this.wishService.myProductArray$);
 
   }
-  
+  remove(i:any){
+    this.wishService.removeFromWish(i)
+  }
 }
