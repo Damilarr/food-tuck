@@ -58,13 +58,45 @@
       </div>
   </div>
 </div> -->
-<div class="h-full bg-white">
-  <div class="container mx-auto w-full py-12 px-6">
-    <div class="flex items-center justify-around">
-      <div class="w-7 h-24 border"></div>
-      <div class="w-7 h-24 border"></div>
-      <div class="w-7 h-24 border"></div>
+<div class="min-h-full bg-white w-full py-6">
+  <div class="flex-wrap flex item-start sm:mx-10 justify-start">
+    <div
+      class="md:w-80 sm:w-72 w-80 h-72 sm:mx-8 mx-4 my-2 flex items-center justify-around"
+      *ngFor="let item of PRODUCTS; let i = index"
+    >
+      <div class="img sm:w-44 h-44 w-32">
+        <img src="{{ item.img }}" alt="" class="rounded" />
+      </div>
+      <div class="w-28">
+        <p class="font-bold text-lg">{{ item.name }}</p>
+        <p class="font-bold">{{ item.price | currency }}</p>
+        <button
+          class="btn btn-yelloww block shadow p-1 hover:text-white hover:bg-yellow-500 round rounded"
+        >
+          <i class="fa-solid fa-cart-shopping"></i> Move to Cart
+        </button>
+        <button
+          class="btn btn-yelloww flex shadow mt-2 p-1 hover:text-white hover:bg-red-500 rounded"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.5 7.5A.5.5 0 018 8v6a.5.5 0 01-1 0V8a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V8a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V8z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M16.5 5a1 1 0 01-1 1H15v9a2 2 0 01-2 2H7a2 2 0 01-2-2V6h-.5a1 1 0 01-1-1V4a1 1 0 011-1H8a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM6.118 6L6 6.059V15a1 1 0 001 1h6a1 1 0 001-1V6.059L13.882 6H6.118zM4.5 5V4h11v1h-11z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Remove
+        </button>
+      </div>
     </div>
-
   </div>
 </div>
