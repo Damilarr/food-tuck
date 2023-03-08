@@ -63,7 +63,7 @@ export class ShopComponent implements OnInit {
     this.cartService.addToCart(prod);
 
     this.toastText = `Successfully added ${prod.name} to cart`;
-    // this.showToast();
+    this.showToast();
   }
   getWishListProduct(id: string) {
     let prod = this.PRODUCTS.find((product: any) => {
@@ -73,7 +73,7 @@ export class ShopComponent implements OnInit {
     this.wishService.addToWish(prod);
 
     this.toastText = `Successfully added ${prod.name} to Wish-list`;
-    // this.showToast();
+    this.showToast();
   }
 
 
