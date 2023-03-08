@@ -59,7 +59,7 @@ export class ShopComponent implements OnInit {
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
-    this.cartService.check(prod);
+    this.check(prod, this.wishService);
     this.cartService.addToCart(prod);
 
     this.toastText = `Successfully added ${prod.name} to cart`;
@@ -69,12 +69,39 @@ export class ShopComponent implements OnInit {
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
-
+    this.check(prod , this.cartService)
     this.wishService.addToWish(prod);
 
     this.toastText = `Successfully added ${prod.name} to Wish-list`;
     // this.showToast();
   }
+
+
+  check(prodct: any , service :any) {
+    let array = service.product._value;
+
+    let seen = false;
+
+    for (let index = 0; index < array.length; index++) {
+      if (array[index].id === prodct.id) {
+        seen = true;
+        if (service === this.cartService) {
+          service.removeFromCart(index);
+        }else{
+          service.removeFromWish(index);
+
+        }
+        
+        setTimeout(() => {
+          seen = false;
+        }, 500);
+      } else if (index === array.length - 1 && seen == false) {
+        return;
+      }
+    }
+  }
+
+
   ngOnDestroy(): void {
     this.foodSub.unsubscribe();
     document

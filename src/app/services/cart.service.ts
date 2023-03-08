@@ -12,7 +12,7 @@ export class CartService {
   // private product  = new  BehaviorSubject<array>([]){
 
   // }
-  private product: any = new BehaviorSubject<string[]>([]);
+  public product: any = new BehaviorSubject<string[]>([]);
   myProductArray$ = this.product.asObservable();
 
   private cartQuantity = new BehaviorSubject<number>(0);
@@ -30,23 +30,7 @@ export class CartService {
     localStorage.setItem('cart-items', JSON.stringify(products));
   }
 
-  public check(prodct: any) {
-    let array = this.wishservice.product._value;
-
-    let seen = false;
-
-    for (let index = 0; index < array.length; index++) {
-      if (array[index].id === prodct.id) {
-        seen = true;
-        this.wishservice.removeFromWish(index);
-        setTimeout(() => {
-          seen = false;
-        }, 500);
-      } else if (index === array.length - 1 && seen == false) {
-        return;
-      }
-    }
-  }
+ 
 
   public addToCart(prodct: any) {
     if (this.product._value.length > 0) {
