@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class WishListService {
   constructor() {}
 
-  private product: any = new BehaviorSubject<string[]>([]);
+  public product: any = new BehaviorSubject<string[]>([]);
   myProductArray$ = this.product.asObservable();
 
   private wishQuantity = new BehaviorSubject<number>(0);

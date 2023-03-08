@@ -23,7 +23,7 @@ export class ShopComponent implements OnInit {
     private wishService: WishListService
   ) {}
   ngOnInit(): void {
-    window?.scrollTo(0,0)
+    window?.scrollTo(0, 0);
     this.fetchFoods();
     document
       .getElementById('sort')
@@ -59,14 +59,13 @@ export class ShopComponent implements OnInit {
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
-    // let wish = this
+    this.cartService.check(prod);
     this.cartService.addToCart(prod);
 
     this.toastText = `Successfully added ${prod.name} to cart`;
-    this.showToast();
+    // this.showToast();
   }
   getWishListProduct(id: string) {
-
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
@@ -74,7 +73,7 @@ export class ShopComponent implements OnInit {
     this.wishService.addToWish(prod);
 
     this.toastText = `Successfully added ${prod.name} to Wish-list`;
-    this.showToast();
+    // this.showToast();
   }
   ngOnDestroy(): void {
     this.foodSub.unsubscribe();
