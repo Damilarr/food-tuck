@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { WishListService } from './wish-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor() { }
+  constructor(private wishservice:WishListService) { }
   // product:any = []
   // private product  = new  BehaviorSubject<array>([]){
 
@@ -30,9 +31,11 @@ export class CartService {
     localStorage.setItem('cart-items',JSON.stringify(products));
   }
   public addToCart(prodct:any){
+    console.log(this.wishservice.getProducts);
+
     if (this.product._value.length > 0) {
       let productArr:any = []
-      productArr.push(prodct)
+      // productArr.push(prodct)
 
 
       productArr.forEach((productt: { id: any; }) => {
@@ -42,7 +45,7 @@ export class CartService {
         }
       });
     }else{
-      this.product._value. push(prodct)
+      // this.product._value. push(prodct)
     }
     this.setCartQuantity(this.product._value.length)
     localStorage.setItem('cart-items',JSON.stringify(this.product._value))
