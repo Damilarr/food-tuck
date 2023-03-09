@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'page', component: PagesComponent },
-  { path: 'wish', component: WishlistComponent },
+  { path: 'wish', component: WishlistComponent, canActivate: [ProfileGuard] },
   { path: 'cart', component: CartComponent, canActivate: [ProfileGuard] },
   { path: 'payment-status', component: PaymentStatusComponent },
 ];
