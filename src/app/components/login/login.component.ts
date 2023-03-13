@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.signInSub = this.regservice.signIn(this.loginData.value).subscribe(
       (response) => {
+        console.log(response);
         this.submitted = false;
         if (response.auth) {
           this.validateResponse(response);
@@ -78,10 +79,12 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authSub = this.authService.authState.subscribe((user) => {
+      console.log(user);
       this.user = user;
       this.loggedIn = user != null;
       this.googleSub = this.regservice.signWithGoogle(user).subscribe(
         (response) => {
+          console.log(response);
           if (response.auth) {
             this.validateResponse(response);
           }
