@@ -31,10 +31,12 @@ export class CartComponent implements OnInit {
     this.cartService.getProducts();
     this.productSub = this.cartService.myProductArray$.subscribe((prod: any) => {
       this.PRODUCTS = prod;
-      this.grandTot();
     });
     this.invokeStripe();
     this.currentUser = this.user.getUser();
+    this.grandTot();
+    console.log(this.cartService.myProductArray$);
+
   }
   onDelete(i: any) {
     this.grandTot()
