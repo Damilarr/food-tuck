@@ -9,7 +9,7 @@ import * as Aos from 'aos';
 export class HomeComponent implements OnInit {
       min:any = 0
      done:boolean = false
-  isInViewPort = ()=>{
+  isInViewPort:any = ()=>{
     let countSection = document.getElementById('counts')
    let rect:any = countSection?.getBoundingClientRect();
    let viewPWidth = window.innerWidth || document.documentElement.clientWidth;

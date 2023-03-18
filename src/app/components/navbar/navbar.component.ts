@@ -23,15 +23,10 @@ export class NavbarComponent implements OnInit {
     document.getElementById('mobileNav')?.classList.replace('flex','hidden');
   }
   ngOnInit(): void {
-    console.log(this.cartService.myValue$);
-
     this.cartService.getProducts()
     this.cartquant = this.cartService.myValue$.subscribe((quantity:any)=>{
       this.cartQuantity = quantity
     })
-
-    console.log(this.wishService.myValue$);
-
     this.wishService.getProducts()
     this.wishquant = this.wishService.myValue$.subscribe((quantity:any)=>{
       this.wishQuantity = quantity

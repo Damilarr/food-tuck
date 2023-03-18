@@ -21,7 +21,7 @@ export class PaymentStatusComponent implements OnInit {
     })
   }
   ngOnDestroy(): void {
-    this.paramSub.unsubscribe()
+    // this.paramSub.unsubscribe()
     
   }
 

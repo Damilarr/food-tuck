@@ -27,10 +27,10 @@ import {
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { SocialAuthService } from 'angularx-social-login/socialauth.service';
 import { CartComponent } from './components/cart/cart.component';
 import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -62,6 +62,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     HttpClientModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
