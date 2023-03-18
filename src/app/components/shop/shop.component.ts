@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { CartService } from 'src/app/services/cart.service';
 import { FoodsService } from 'src/app/services/foods.service';
 import { WishListService } from 'src/app/services/wish-list.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shop',
@@ -18,10 +20,15 @@ export class ShopComponent implements OnInit {
   foodType: string = 'best-foods';
   private foodSub: any;
   constructor(
+    private snackBar: MatSnackBar,
     private foodService: FoodsService,
     private cartService: CartService,
-    private wishService: WishListService
+    private wishService: WishListService,
+    private userService: AuthRegisterService
   ) {}
+  loginAlert(msg: string, action: string) {
+    this.snackBar.open(msg, action);
+  }
   ngOnInit(): void {
     window?.scrollTo(0, 0);
     this.fetchFoods();
@@ -55,7 +62,16 @@ export class ShopComponent implements OnInit {
     this.page = 1;
     this.fetchFoods();
   }
+
   getFoodProduct(id: string) {
+    let user = this.userService.getUser();
+    if (user) {
+      console.log('');
+    } else {
+      this.loginAlert('Please Login First', 'Ok');
+      console.log('not signed In');
+      return;
+    }
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
@@ -66,18 +82,25 @@ export class ShopComponent implements OnInit {
     this.showToast();
   }
   getWishListProduct(id: string) {
+    let user = this.userService.getUser();
+    if (user) {
+      console.log('isSignedIn');
+    } else {
+      this.loginAlert('Please Login First', 'Ok');
+     
+      return;
+    }
     let prod = this.PRODUCTS.find((product: any) => {
       return product.id == id;
     });
-    this.check(prod , this.cartService)
+    this.check(prod, this.cartService);
     this.wishService.addToWish(prod);
 
     this.toastText = `Successfully added ${prod.name} to Wish-list`;
     this.showToast();
   }
 
-
-  check(prodct: any , service :any) {
+  check(prodct: any, service: any) {
     let array = service.product._value;
 
     let seen = false;
@@ -87,11 +110,10 @@ export class ShopComponent implements OnInit {
         seen = true;
         if (service === this.cartService) {
           service.removeFromCart(index);
-        }else{
+        } else {
           service.removeFromWish(index);
-
         }
-        
+
         setTimeout(() => {
           seen = false;
         }, 500);
@@ -100,7 +122,6 @@ export class ShopComponent implements OnInit {
       }
     }
   }
-
 
   ngOnDestroy(): void {
     this.foodSub.unsubscribe();

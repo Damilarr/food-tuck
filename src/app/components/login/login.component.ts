@@ -8,6 +8,7 @@ import {
   SocialLoginModule,
   SocialUser,
 } from '@abacritt/angularx-social-login';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private regservice: AuthRegisterService,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private cartService: CartService
   ) {
     this.loginData = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.signInSub = this.regservice.signIn(this.loginData.value).subscribe(
       (response) => {
-        console.log(response);
+        
         this.submitted = false;
         if (response.auth) {
           this.validateResponse(response);
@@ -72,6 +74,7 @@ export class LoginComponent implements OnInit {
     this.toastText = resp.message;
     document?.getElementById('toastBtn')?.click();
     this.regservice.setUser(resp.user);
+    this.cartService.getProducts();
     sessionStorage.setItem('TOKEN', resp.token);
     setTimeout(() => {
       this.router.navigate(['/profile']);
@@ -84,7 +87,6 @@ export class LoginComponent implements OnInit {
       this.loggedIn = user != null;
       this.googleSub = this.regservice.signWithGoogle(user).subscribe(
         (response) => {
-          console.log(response);
           if (response.auth) {
             this.validateResponse(response);
           }
@@ -101,8 +103,8 @@ export class LoginComponent implements OnInit {
   show() {
     this.showPassword = document?.getElementById('passwordInp');
     this.showPassword.type == 'password'
-      ? (this.showPassword.type = 'text',this.eye= true)
-      : (this.showPassword.type = 'password', this.eye= false);
+      ? ((this.showPassword.type = 'text'), (this.eye = true))
+      : ((this.showPassword.type = 'password'), (this.eye = false));
   }
   ngOnDestroy(): void {}
 }
