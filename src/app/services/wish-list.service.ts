@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthRegisterService } from './auth-register.service';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class WishListService {
 
   private wishQuantity = new BehaviorSubject<number>(0);
   myValue$ = this.wishQuantity.asObservable();
-  url: any = 'http://localhost:3007/wish-list';
+  url: any = `${environment.SERVER_URL}/wish-list`;
   User: any;
   setWishQuantity(newValue: number) {
     this.wishQuantity.next(newValue);
@@ -64,7 +65,7 @@ export class WishListService {
     this.User = this.userService.getUser();
     if (this.User) {
      
-      let getUrl = `http://localhost:3007/wish-list?id=${this.User._id}`;
+      let getUrl = `${this.url}?id=${this.User._id}`;
       let prod;
       this.http.get<any>(getUrl).subscribe((resp: any) => {
         prod = resp;

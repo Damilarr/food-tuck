@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthRegisterService } from './auth-register.service';
 
 import { WishListService } from './wish-list.service';
@@ -18,7 +19,7 @@ export class CartService {
 
   // }
   User: any;
-  url: any = 'http://localhost:3007/cart';
+  url: any = `${environment.SERVER_URL}/cart`;
   public product: any = new BehaviorSubject<string[]>([]);
   myProductArray$ = this.product.asObservable();
 
@@ -76,7 +77,7 @@ export class CartService {
     this.User = this.userService.getUser();
     if (this.User) {
      
-      let getUrl = `http://localhost:3007/cart?id=${this.User._id}`;
+      let getUrl = `${this.url}?id=${this.User._id}`;
       let prod;
       this.http.get<any>(getUrl).subscribe((resp: any) => {
         prod = resp;
