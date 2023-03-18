@@ -19,7 +19,7 @@ export class AuthRegisterService {
     return this.http.post<any>(url, user);
   }
   signWithGoogle(idToken: any): Observable<any> {
-    let url = `http://localhost:3007/google-auth`;
+    let url = `${this.SERVER_URL}/google-auth`;
     return this.http.post<any>(url, idToken);
   }
   setUser(user: any) {
