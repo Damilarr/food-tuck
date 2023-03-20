@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   PRODUCTS: any = [];
   number: number = 1;
   check: any = [];
-  grand: number = 0;
+  grand: any = 0;
   paymentHandler: any = null;
   currentUser: any = '';
   private productSub: any;
@@ -34,17 +34,17 @@ export class CartComponent implements OnInit {
         this.PRODUCTS = prod;
       }
     );
+    this.grandTot();
     this.invokeStripe();
     this.currentUser = this.user.getUser();
-    this.grandTot();
   }
   onDelete(i: any) {
-    this.grandTot();
     this.cartService.removeFromCart(i);
+    this.grandTot();
   }
 
   grandTot() {
-    if (this.PRODUCTS.length != 0) {
+    if (this.PRODUCTS.length > 0) {
       for (let index = 0; index < this.PRODUCTS.length; index++) {
         this.check.push(Number(this.PRODUCTS[index].total));
 
