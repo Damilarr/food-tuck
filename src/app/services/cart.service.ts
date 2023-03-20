@@ -35,6 +35,7 @@ export class CartService {
     this.http.post<any>(this.url, details);
   }
   updateProduct(products: any) {
+    console.log(products);
     this.User = this.userService.getUser();
     this.product.next(products);
     const details = { id: this.User._id, item: products };
@@ -65,7 +66,7 @@ export class CartService {
     } else {
       this.product._value.push(prodct);
     }
-   
+
     this.setCartQuantity(this.product._value.length);
     const details = { id: this.User._id, item: this.product._value };
     this.http.post<any>(this.url, details).subscribe((resp) => {
@@ -76,7 +77,6 @@ export class CartService {
   getProducts() {
     this.User = this.userService.getUser();
     if (this.User) {
-     
       let getUrl = `${this.url}?id=${this.User._id}`;
       let prod;
       this.http.get<any>(getUrl).subscribe((resp: any) => {
@@ -99,7 +99,6 @@ export class CartService {
       });
       return true;
     } else {
-     
       this.product._value.length = 0;
       this.setCartQuantity(this.product._value.length);
       return false;
